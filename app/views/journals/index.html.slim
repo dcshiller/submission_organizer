@@ -1,0 +1,6 @@
+h1 Journals
+- @presenter.journals.each do |j|
+  h4= j.title
+
+= link_to "new", new_journal_path
+= link_to "home", dashboards_path

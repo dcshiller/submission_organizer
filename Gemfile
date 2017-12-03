@@ -8,6 +8,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
+gem 'bulma-rails'
 gem 'slim-rails'
 gem 'simple_form'
 gem 'bcrypt'

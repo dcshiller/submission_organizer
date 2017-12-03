@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Article:
+  = @submission.article
+p
+  strong Journal:
+  = @submission.journal
+
+= link_to 'Edit', edit_submission_path(@submission)
+'  |
+= link_to 'Back', submissions_path
