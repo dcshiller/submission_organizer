@@ -1,0 +1,15 @@
+= render 'partials/title', title: 'Journal'
+
+p#notice = notice
+
+p.mb-5x
+  strong name:
+  =< @presenter.journal
+
+.mb-10x
+.row.center
+  = link_to 'Edit', edit_journal_path(@presenter.journal)
+  '  |
+  = link_to 'Journals', journals_path
+  ' |
+  = link_to 'New Journal', new_journal_path

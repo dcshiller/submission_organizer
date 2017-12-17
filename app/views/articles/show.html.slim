@@ -1,18 +1,23 @@
+= render 'partials/title', title: 'Article'
+
 p#notice = notice
 
-p
-  strong User:
-  = @article.user
-p
+p.mb-5x
   strong Title:
-  = @article.title
-p
+  =< @article
+p.mb-5x
+  strong User:
+  =< @article.user
+p.mb-5x
   strong Submissions:
-  - @article.submissions.each do |s|
-    = s 
+  - @article.submissions.each.with_index do |s, i|
+    = ',' if i > 0
+    =< link_to s, s
 
-= link_to 'Edit', edit_article_path(@article)
-'  |
-= link_to 'Back', articles_path
-' |
-= link_to 'New Submission', new_submission_path(submission: { article_id: @article.id })
+.mb-10x
+.row.center
+  = link_to 'Edit', edit_article_path(@article)
+  '  |
+  = link_to 'Articles', articles_path
+  ' |
+  = link_to 'New Submission', new_submission_path(submission: { article_id: @article.id })

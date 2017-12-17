@@ -1,0 +1,2 @@
+module SubmissionEventsHelper
+end

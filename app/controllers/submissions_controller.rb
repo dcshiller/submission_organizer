@@ -1,19 +1,13 @@
 class SubmissionsController < ApplicationController
-  before_action :set_submission, only: [:show, :edit, :update, :destroy]
+  before_action :init_presenter
 
-  def index
-    @submissions = Submission.all
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
-  def new
-    @submission = Submission.new(submission_params)
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @submission = Submission.new(submission_params)
@@ -42,7 +36,7 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
-    @submission.destroy
+    @presenter.destroy
     respond_to do |format|
       format.html { redirect_to submissions_url, notice: 'Submission was successfully destroyed.' }
       format.json { head :no_content }
@@ -50,11 +44,17 @@ class SubmissionsController < ApplicationController
   end
 
   private
-    def set_submission
-      @submission = Submission.find(params[:id])
-    end
 
-    def submission_params
-      params.require(:submission).permit(:article_id, :journal_id)
-    end
+  def init_presenter
+    set_submission
+    @presenter = SubmissionPresenter.new(current_user, @submission)
+  end
+
+  def set_submission
+    @submission = Submission.find_by(id: params[:id]) || Submission.new
+  end
+
+  def submission_params
+    params.permit(:submission).permit(:article_id, :journal_id)
+  end
 end

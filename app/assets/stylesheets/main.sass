@@ -1,0 +1,27 @@
+@import bulma
+
+html, body
+  height: 100%
+  background: #e5edfb
+
+a
+  border-bottom: 1px solid green
+  white-space: nowrap
+  .box &
+    border-bottom: 1px solid rgba(0,0,0,0)
+
+a:hover
+  border-bottom: 1px solid lime
+
+.label.select, 
+.select.input_wrapper
+  display: block
+  height: auto
+  &::after
+    content: none
+
+.select.input_wrapper
+  margin-bottom: 10px
+
+#content_container
+  min-height: 90%

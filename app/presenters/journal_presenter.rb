@@ -1,9 +1,12 @@
 class JournalPresenter
-  def journals
-    Journal.all.order(:title)
+  attr_reader :user, :journal
+
+  def initialize(user, journal)
+    @user = user
+    @journal = journal
   end
 
-  def new_journal
-    Journal.new
+  def journals
+    Journal.all.order(:title)
   end
 end

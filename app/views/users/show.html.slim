@@ -1,7 +1,32 @@
-.box
-  h1 Hello #{current_user.name}!
 
-  - current_user.articles.each do |article|
-   = article
-  = link_to "journals", journals_path
-  = link_to "new article", new_article_path
+.level
+  .level-item: h1.title.is-4 Hello #{current_user.name}!
+.tile.is-ancestor
+  .tile.is-parent
+    .tile.is-child.box.notification.is-info
+      = link_to articles_path do
+        .title.is-5.mb-10x.t-center Articles
+      .column
+        - @presenter.articles.each do |article|
+          .row.center
+            = link_to article, article
+  .tile.is-parent
+    .tile.is-child.box.notification.is-success
+      = link_to journals_path do
+        .title.is-5.mb-10x.t-center Journals
+      .column
+        - @presenter.journals.each do |journal|
+          .row.center
+            = link_to journal, journal
+.tile.is-ancestor
+  .tile.is-parent
+    .tile.is-child.box.notification.is-warning
+      = link_to submission_events_path do
+        .title.is-5.mb-10x.t-center Events
+      .column
+        table
+          - @presenter.submission_events do |event|
+            tr.center
+              td= event.article
+              td= link_to "#{event.event_type}", event
+              td= event.date

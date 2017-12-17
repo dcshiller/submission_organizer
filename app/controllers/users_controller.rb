@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :login_required, only: :show
-  
+  before_action :init_presenter
+
   def new
-    init_presenter
   end
 
   def create
@@ -16,13 +16,13 @@ class UsersController < ApplicationController
 private
   
   def init_presenter
-    @presenter = UserPresenter.new
+    @presenter = UserPresenter.new(current_user)
   end
 
   def save_user
     user_from_params.save
     login_as user_from_params
-    redirect_to assignments_path
+    redirect_to root_path
   end
 
   def user_params

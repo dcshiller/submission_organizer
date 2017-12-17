@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :init_presenter
 
   def index; end
@@ -11,7 +10,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.new(article_params)
     respond_to do |format|
       if @article.save
-        format.html { redirect_to dashboards_path, notice: 'Article was successfully created.' }
+        format.html { redirect_to user_path(current_user), notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -33,7 +32,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy
+    @presenter.article.destroy
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
       format.json { head :no_content }
@@ -43,11 +42,12 @@ class ArticlesController < ApplicationController
 private
 
   def init_presenter
+    set_article
     @presenter = ArticlePresenter.new(current_user, @article)
   end
 
   def set_article
-    @article = Article.find(params[:id])
+    @article = Article.find_by(id: params[:id]) || Article.new
   end
 
   def article_params

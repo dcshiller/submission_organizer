@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DashboardsControllerTest < ActionDispatch::IntegrationTest
+class SubmissionEventsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

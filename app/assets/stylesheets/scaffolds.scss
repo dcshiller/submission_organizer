@@ -1,5 +1,4 @@
 body {
-  background-color: #fff;
   color: #333;
   margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -24,11 +23,6 @@ a {
 
   &:visited {
     color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
   }
 }
 

@@ -1,0 +1,18 @@
+=render 'partials/title', title: 'Event'
+
+table.table
+  thead
+    tr
+      th 
+      th colspan=3 Actions
+
+  tbody
+    - @presenter.submission_events.each do |submission_event|
+      tr
+        td = link_to 'Show', submission_event
+        td = link_to 'Edit', edit_submission_event_path(submission_event)
+        td = link_to 'Destroy', submission_event, data: { confirm: 'Are you sure?' }, method: :delete
+br
+
+.row.center
+  = link_to 'New Event', new_submission_event_path

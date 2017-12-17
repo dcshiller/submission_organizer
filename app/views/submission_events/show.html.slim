@@ -1,0 +1,18 @@
+= render 'partials/title', title: 'Event'
+
+p#notice = notice
+
+p.mb-5x
+  strong Type:
+  =< @presenter.submission_event
+p.mb-5x
+  strong User:
+  =< @presenter.user
+
+.mb-10x
+.row.center
+  = link_to 'Edit', edit_submission_event_path(@presenter.submission_event)
+  '  |
+  = link_to 'Submission Events', submission_events_path
+  ' |
+  = link_to 'New Submission', new_submission_path(submission: { submission_event_id: @presenter.submission_event.id })

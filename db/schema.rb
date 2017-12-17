@@ -10,19 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202232216) do
+ActiveRecord::Schema.define(version: 20171209232847) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
-  end
-
-  create_table "assignments", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "journals", force: :cascade do |t|
@@ -31,9 +29,19 @@ ActiveRecord::Schema.define(version: 20171202232216) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "submission_events", force: :cascade do |t|
+    t.bigint "submission_id"
+    t.string "event_type"
+    t.string "event_subtype"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["submission_id"], name: "index_submission_events_on_submission_id"
+  end
+
   create_table "submissions", force: :cascade do |t|
-    t.integer "article_id"
-    t.integer "journal_id"
+    t.bigint "article_id"
+    t.bigint "journal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_submissions_on_article_id"
@@ -48,4 +56,7 @@ ActiveRecord::Schema.define(version: 20171202232216) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "articles", "users"
+  add_foreign_key "submissions", "articles"
+  add_foreign_key "submissions", "journals"
 end

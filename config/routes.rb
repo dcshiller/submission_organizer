@@ -9,11 +9,11 @@ Rails.application.routes.draw do
   get 'logout', controller: 'sessions', action: 'destroy'
   resources :journals
   resources :articles
-  
+  resources :submission_events
+
   resources :users, only: [:new, :create, :show] do
     scope module: :users do
       resources :assignments, only: [:index, :show]
     end
   end
 end
-
