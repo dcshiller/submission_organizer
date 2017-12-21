@@ -3,10 +3,25 @@
 p#notice = notice
 
 p.mb-5x
-  strong name:
+  strong Name:
   =< @presenter.journal
 
-.mb-10x
+p.mb-20x
+  .row.center.mb-20x
+    strong Submitted Papers:
+  table
+    thead
+      tr
+        th Title
+        th Last
+        th Result
+    - @presenter.journal.submissions.each do |submission|
+      tr
+        td= link_to submission.article, submission.article
+        td= submission.last_event&.date || '-'
+        td= submission.last_event&.decision || '-'
+
+.mb-40x
 .row.center
   = link_to 'Edit', edit_journal_path(@presenter.journal)
   '  |

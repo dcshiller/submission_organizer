@@ -3,6 +3,7 @@
 ajp = Journal.create(title: "Australasian Journal of Philosophy")
 analysis = Journal.create(title: "Analysis")
 apq = Journal.create(title: "American Philosophical Quarterly")
+bioethics = Journal.create(title: "Bioethics")
 bjps = Journal.create(title: "British Journal for the Philosophy of Science")
 cjp = Journal.create(title: "Canadian Journal of Philosophy")
 dialectica = Journal.create(title: "Dialectica")
@@ -32,6 +33,7 @@ sub.events.create(event_type: "decision", event_subtype: "revise & resubmit", da
 sub.events.create(event_type: "submission", event_subtype: "revision", date: "28/06/2013".to_date)
 sub.events.create(event_type: "decision", event_subtype: "rejection", date: "01/11/2013".to_date)
 halfit.submissions.create(journal: philstud)
+sub = halfit.submissions.last
 sub.events.create(event_type: "submission", event_subtype: "initial", date: "04/11/2013".to_date)
 sub.events.create(event_type: "decision", event_subtype: "revise & resubmit", date: "13/06/2014".to_date)
 
@@ -95,6 +97,20 @@ nofact.submissions.create(journal: ajp)
 sub = nofact.submissions.last
 sub.events.create(event_type: "submission", event_subtype: "initial", date: "17/04/2014".to_date)
 sub.events.create(event_type: "decision", event_subtype: "rejection", date: "21/07/2014".to_date)
+
+grounds = user.articles.create(title: "Probability and Confidence")
+grounds.submissions.create(journal: philimprint)
+sub = grounds.submissions.last
+sub.events.create(event_type: "submission", event_subtype: "initial", date: "01/03/2014".to_date)
+sub.events.create(event_type: "decision", event_subtype: "rejection", date: "01/05/2014".to_date)
+grounds.submissions.create(journal: synthese)
+sub = grounds.submissions.last
+sub.events.create(event_type: "submission", event_subtype: "initial", date: "13/05/2014".to_date)
+sub.events.create(event_type: "decision", event_subtype: "rejection", date: "24/07/2014".to_date)
+grounds.submissions.create(journal: philquarterly)
+sub = grounds.submissions.last
+sub.events.create(event_type: "submission", event_subtype: "initial", date: "10/10/2014".to_date)
+sub.events.create(event_type: "decision", event_subtype: "rejection", date: "11/11/2014".to_date)
 
 hidqua = user.articles.create(title: "Hidden Qualia")
 hidqua.submissions.create(journal: philimprint)
@@ -199,3 +215,25 @@ sub.events.create(event_type: "submission", event_subtype: "initial", date: "25/
 sub.events.create(event_type: "decision", event_subtype: "conditional acceptance", date: "01/10/2017".to_date)
 sub.events.create(event_type: "submission", event_subtype: "revision", date: "29/11/2017".to_date)
 sub.events.create(event_type: "decision", event_subtype: "acceptance", date: "04/12/2017".to_date)
+
+inDef = user.articles.create(title: "In Defense of Artificial Replacement")
+inDef.submissions.create(journal: bioethics)
+sub = inDef.submissions.last
+sub.events.create(event_type: "submission", event_subtype: "initial", date: "28/04/2016".to_date)
+sub.events.create(event_type: "decision", event_subtype: "acceptance", date: "09/08/2016".to_date)
+
+sleepingB = user.articles.create(title: "Sleeping Beauty and the Limits of Conditionalization")
+sleepingB.submissions.create(journal: synthese)
+sub = sleepingB.submissions.last
+sub.events.create(event_type: "submission", event_subtype: "initial", date: "17/12/2016".to_date)
+sub.events.create(event_type: "decision", event_subtype: "rejection", date: "18/04/2017".to_date)
+
+sleepingB.submissions.create(journal: philquarterly)
+sub = sleepingB.submissions.last
+sub.events.create(event_type: "submission", event_subtype: "initial", date: "22/04/2017".to_date)
+sub.events.create(event_type: "decision", event_subtype: "rejection", date: "19/06/2017".to_date)
+
+sleepingB.submissions.create(journal: erkenntnis)
+sub = sleepingB.submissions.last
+sub.events.create(event_type: "submission", event_subtype: "initial", date: "19/06/2017".to_date)
+sub.events.create(event_type: "decision", event_subtype: "rejection", date: "29/11/2017".to_date)

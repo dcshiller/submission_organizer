@@ -4,29 +4,30 @@
 .tile.is-ancestor
   .tile.is-parent
     .tile.is-child.box.notification.is-info
-      = link_to articles_path do
+      = link_to articles_path, class: 'title' do
         .title.is-5.mb-10x.t-center Articles
       .column
         - @presenter.articles.each do |article|
-          .row.center
+          .row
             = link_to article, article
   .tile.is-parent
     .tile.is-child.box.notification.is-success
-      = link_to journals_path do
+      = link_to journals_path, class: 'title'do
         .title.is-5.mb-10x.t-center Journals
       .column
         - @presenter.journals.each do |journal|
-          .row.center
+          .row
             = link_to journal, journal
 .tile.is-ancestor
   .tile.is-parent
     .tile.is-child.box.notification.is-warning
-      = link_to submission_events_path do
+      = link_to submission_events_path, class: 'title' do
         .title.is-5.mb-10x.t-center Events
       .column
         table
-          - @presenter.submission_events do |event|
-            tr.center
+          - @presenter.submission_events.each do |event|
+            tr
               td= event.article
-              td= link_to "#{event.event_type}", event
+              td= event.event_type
+              td= link_to "#{event.event_subtype}", event
               td= event.date

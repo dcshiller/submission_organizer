@@ -1,20 +1,31 @@
-= render 'partials/title', title: 'Article'
+= render 'partials/title', title: 'Article', subtitle: @article.title
 
 p#notice = notice
 
 p.mb-5x
   strong Title:
-  =< @article
-p.mb-5x
+  =< @article.title
+p.mb-30x
   strong User:
   =< @article.user
 p.mb-5x
-  strong Submissions:
-  - @article.submissions.each.with_index do |s, i|
-    = ',' if i > 0
-    =< link_to s, s
-
-.mb-10x
+  .row.center.mb-20x
+    strong.t-center Submissions:
+  table
+    thead
+      tr
+        th Journal
+        th.t-center Dates
+        th Result
+    - @article.submissions.includes(:events).sort{ |s, t| t.events.map(&:date).max <=> s.events.map(&:date).max}.each do |s, i|
+      tr
+        td= link_to s, s
+        td
+          = s.events.order(:date).first.date
+          = ' - '
+          = s.last_event.date
+        td= s.last_event.event_subtype
+.mb-40x
 .row.center
   = link_to 'Edit', edit_article_path(@article)
   '  |

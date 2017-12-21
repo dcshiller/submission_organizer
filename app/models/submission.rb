@@ -6,4 +6,8 @@ class Submission < ApplicationRecord
   def to_s
     journal.title
   end
+
+  def last_event
+    events.order(date: :desc).first
+  end
 end

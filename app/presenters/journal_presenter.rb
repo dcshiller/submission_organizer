@@ -7,6 +7,11 @@ class JournalPresenter
   end
 
   def journals
-    Journal.all.order(:title)
+    # Journal.all.order(:title)
+    Journal.all.to_a
+  end
+
+  def journals_by_last_activity
+    journals.sort {|a, b| b.last_activity_for(user) <=> a.last_activity_for(user)}
   end
 end

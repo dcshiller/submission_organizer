@@ -10,8 +10,17 @@ a
   .box &
     border-bottom: 1px solid rgba(0,0,0,0)
 
-a:hover
+.notification a:hover, a:hover
   border-bottom: 1px solid lime
+  text-decoration: none
+
+.notification 
+  a.title, .title
+    text-decoration: none
+
+a:hover .title
+  font-weight: bold
+  text-shadow: 1px 1px grey
 
 .label.select, 
 .select.input_wrapper
@@ -25,3 +34,6 @@ a:hover
 
 #content_container
   min-height: 90%
+
+.clickable
+  cursor: pointer

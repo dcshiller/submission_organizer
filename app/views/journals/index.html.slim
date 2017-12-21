@@ -6,7 +6,7 @@ table.table
     th Lastest Activity
 
   tbody
-    - @presenter.journals.each do |j|
+    - @presenter.journals_by_last_activity.each do |j|
       tr
         td= link_to j, j
         td= j.last_activity_for(current_user) || '-'

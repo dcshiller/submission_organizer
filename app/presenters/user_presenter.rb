@@ -14,6 +14,6 @@ class UserPresenter
   end
 
   def submission_events
-    SubmissionEvent.where(submission: user.submissions).limit(7)
+    user.events.order(date: :desc).limit(7)
   end
 end

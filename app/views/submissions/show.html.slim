@@ -14,8 +14,8 @@ p
   table
     - @presenter.submission.events.order(date: :desc).each do |event|
         tr
-          td
-            =< link_to event.event_type, event
+          td= event.event_type
+          td= link_to event.event_subtype, event
           td= event.date
 .mb-10x
 
