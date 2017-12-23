@@ -7,6 +7,6 @@ class SubmissionPresenter
   end
 
   def submissions
-    user.submissions.joins(:events).order('submissions.events' => :desc)
+    user.submissions.joins(:events).order('submission_events.date DESC')
   end
 end

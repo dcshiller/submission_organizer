@@ -5,18 +5,19 @@ html
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' 
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
 
-  
   body.container
     nav.level.is-mobile
       .level-left.column.is-one-third
-        p.level-item= link_to 'home', current_user
-      .level-item.column.is-one-third.has-text-centered: h1.title.is-3 JScribe
-      .level-right.column.is-one-third
-        .row
-          p.level-item= link_to 'journals', journals_path
-          p.level-item= link_to 'articles', articles_path
-          p.level-item= link_to 'submissions', submissions_path
+      - unless request.env['PATH_INFO'] == "/users/#{current_user.id}"
+        .level-item.column.is-one-third.has-text-centered: h1.title.is-3: p.level-item= link_to current_user do
+          i.material-icons home
+        .level-right.column.is-one-third
+        / .row
+        /   p.level-item= link_to 'journals', journals_path
+        /   p.level-item= link_to 'articles', articles_path
+        /   p.level-item= link_to 'submissions', submissions_path
     #content_container.container.column.middle
       .row.center
         .box

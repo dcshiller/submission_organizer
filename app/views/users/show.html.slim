@@ -1,33 +1,29 @@
-
 .level
   .level-item: h1.title.is-4 Hello #{current_user.name}!
 .tile.is-ancestor
-  .tile.is-parent
+  .tile.is-parent data-url=articles_path
     .tile.is-child.box.notification.is-info
-      = link_to articles_path, class: 'title' do
-        .title.is-5.mb-10x.t-center Articles
-      .column
+      .title.is-5.mb-10x.t-center Articles
+      .column.link_list
         - @presenter.articles.each do |article|
           .row
             = link_to article, article
-  .tile.is-parent
+  .tile.is-parent data-url=journals_path
     .tile.is-child.box.notification.is-success
-      = link_to journals_path, class: 'title'do
-        .title.is-5.mb-10x.t-center Journals
-      .column
+      .title.is-5.mb-10x.t-center Journals
+      .column.link_list
         - @presenter.journals.each do |journal|
           .row
             = link_to journal, journal
 .tile.is-ancestor
-  .tile.is-parent
+  .tile.is-parent data-url=submission_events_path
     .tile.is-child.box.notification.is-warning
-      = link_to submission_events_path, class: 'title' do
-        .title.is-5.mb-10x.t-center Events
+      .title.is-5.mb-10x.t-center Events
       .column
-        table
+        table.row.center
           - @presenter.submission_events.each do |event|
-            tr
+            tr data-url=submission_event_url(event)
               td= event.article
               td= event.event_type
-              td= link_to "#{event.event_subtype}", event
+              td= event.event_subtype
               td= event.date

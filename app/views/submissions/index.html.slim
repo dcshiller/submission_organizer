@@ -9,7 +9,7 @@ table.mb-20x
       th Last Update
   tbody
     - @presenter.submissions.each do |submission|
-      tr
+      tr data-url=submission_path(submission)
         td = submission.article
         td = submission.journal
         td = link_to 'Show', submission

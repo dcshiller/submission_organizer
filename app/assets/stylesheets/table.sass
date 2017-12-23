@@ -1,0 +1,56 @@
+table
+  thead
+    border-bottom: 3px solid grey
+  tbody
+    tr, td
+      background: none
+    tr:hover
+      background: lighten(lightgrey, 10%)
+    tr:not(:last-of-type), tr:last-of-type.form_row
+      border-bottom: 1px solid lightgrey
+    td:not(:last-of-type)
+      border-right: 1px solid lightgrey
+    a
+      text-decoration: none
+      border-bottom: none
+    [data-url]
+      cursor: pointer
+
+.notification.is-warning table
+  background: radial-gradient(lighten(#ffdd57, 5%), #ffdd57)
+  tr, td
+    background: none
+  tr:hover
+    background: lighten(#ffdd57, 8%)
+  tr:not(:last-of-type)
+    border-bottom: 1px solid tan
+  td:not(:last-of-type)
+    border-right: 1px solid tan
+  a
+    text-decoration: none
+    border-bottom: none
+  [data-url]
+    cursor: pointer
+
+
+.left-button
+  cursor: pointer
+  position: absolute
+  i.material-icons
+    color: lightgrey
+    font-size: 35px
+    &:hover
+      color: black
+.form_row
+  position: relative
+  overflow-y: visible
+  tr, td, form
+    padding: 0
+    margin: 0
+  input
+    margin: 0
+    border: none
+    box-shadow: none
+  input[type='submit']
+    position: relative
+    left: 0

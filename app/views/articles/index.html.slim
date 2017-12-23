@@ -4,16 +4,20 @@ table.table
   thead
     tr
       th Title
-      th colspan=2 Actions
       th Last Update
+      th
 
   tbody
     - @presenter.articles.each do |article|
-      tr
-        td= link_to article, article
-        td= link_to 'Edit', edit_article_path(article)
-        td= link_to 'Destroy', article, data: { confirm: 'Are you sure?' }, method: :delete
+      tr data-url=article_path(article)
+        td= article
         td= article.submission_events.order(date: :desc).first&.date || '-'
+        td.action_links
+          = link_to edit_article_path(article) do
+            i.material-icons.edit mode_edit
+          = link_to article, data: { confirm: 'Are you sure?' }, method: :delete do
+            i.material-icons.trash delete
+
 br
 
 .row.center

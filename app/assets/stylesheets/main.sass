@@ -1,18 +1,23 @@
 @import bulma
+@import table.sass
+
 
 html, body
   height: 100%
   background: #e5edfb
 
-a
-  border-bottom: 1px solid green
-  white-space: nowrap
-  .box &
-    border-bottom: 1px solid rgba(0,0,0,0)
+.action_links *:hover
+  border-bottom: none
+  i.material-icons:hover
+    border-bottom: none
+    &.edit
+      color: green
+    &.trash
+      color: red !important
 
-.notification a:hover, a:hover
-  border-bottom: 1px solid lime
-  text-decoration: none
+// .notification a:hover, a:hover
+//   border-bottom: 1px solid lime
+//   text-decoration: none
 
 .notification 
   a.title, .title
@@ -21,6 +26,19 @@ a
 a:hover .title
   font-weight: bold
   text-shadow: 1px 1px grey
+
+.notification .link_list
+  background: radial-gradient(rgba(250,250,250,.10) 20%, rgba(250,250,250,.05) 40%, rgba(250,250,250,.025) 60%,  rgba(0,0,0,0) 50%)
+  a, a:hover
+    font-size: 15px
+    margin-bottom: 4px
+    text-decoration: none
+    border-bottom: none
+  a:hover
+    text-shadow: 1px 1px rgba(10,10,10,.25)
+
+.box
+  padding: 40px
 
 .label.select, 
 .select.input_wrapper
@@ -35,5 +53,8 @@ a:hover .title
 #content_container
   min-height: 90%
 
-.clickable
+.clickable, [data-url], [data-url] *
   cursor: pointer
+
+.hidden
+  display: none
