@@ -26,8 +26,8 @@ p.mb-5x
         th.t-center Dates
         th Result
     - @article.submissions.includes(:events).sort{ |s, t| t.events.map(&:date).max <=> s.events.map(&:date).max}.each do |s, i|
-      tr
-        td= link_to s, s
+      tr data-url=submission_event_url(s)
+        td= s
         td
           = s.events.order(:date).first.date
           = ' - '

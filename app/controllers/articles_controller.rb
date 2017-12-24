@@ -7,23 +7,22 @@ class ArticlesController < ApplicationController
   def edit; end
 
   def create
-    @article = current_user.articles.new(article_params)
     respond_to do |format|
-      if @article.save
-        format.html { redirect_to user_path(current_user), notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
+      if @presenter.article.save
+        format.html { redirect_to articles_path, notice: 'Article was successfully created.' }
+        format.json { render :show, status: :created, location: @presenter.article }
       else
         format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.json { render json: @presenter.article.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
     respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
+      if @presenter.article.update(article_params)
+        format.html { redirect_to @presenter.article, notice: 'Article was successfully updated.' }
+        format.json { render :show, status: :ok, location: @presenter.article }
       else
         format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }
@@ -47,10 +46,10 @@ private
   end
 
   def set_article
-    @article = Article.find_by(id: params[:id]) || Article.new
+    @article = Article.find_by(id: params[:id]) || Article.new(article_params)
   end
 
   def article_params
-    params.require(:article).permit(:user_id, :title)
+    { user: current_user }.merge(params[:article]&.permit(:user_id, :title) || {})
   end
 end

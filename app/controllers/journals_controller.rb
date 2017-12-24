@@ -18,7 +18,7 @@ class JournalsController < ApplicationController
   private
 
   def init_presenter
-    @presenter = JournalPresenter.new(current_user, journal_from_params)
+    @presenter = JournalPresenter.new(current_user, journal_from_params, params)
   end
 
   def journal_params_are_valid?

@@ -12,18 +12,21 @@ function addRow(button, row){
 }
 
 function saveForm(button, row){
+  id = el.getAttribute('data-target');
   row.querySelectorAll('td').forEach( function(nextEl) {nextEl.classList.add('hidden'); } );
   button.setAttribute('data-mode', 'add');
+  form = document.querySelector('form[data-form-id=' + id + ']');
+  form.submit();
   button.querySelector('i').innerText = 'add';
 }
 
-function locate(el){
-  id = el.getAttribute('data-target');
-  target = document.querySelector("[data-address='" + id +"']");
-  container = document.querySelector('.row').getBoundingClientRect()
-  el.style.top = target.getBoundingClientRect().y - container.y + 10;
-  el.style.left = target.getBoundingClientRect().x - container.x - 20;
-}
+// function locate(el){
+//   id = el.getAttribute('data-target');
+//   target = document.querySelector("[data-address='" + id +"']");
+//   container = document.querySelector('.row').getBoundingClientRect()
+//   // el.style.top = target.getBoundingClientRect().y - container.y + 65;
+//   // el.style.left = target.getBoundingClientRect().x - container.x - 20;
+// }
 
 document.addEventListener('turbolinks:load', function(){
   for (el of document.querySelectorAll('[data-url]')) {
@@ -34,9 +37,22 @@ document.addEventListener('turbolinks:load', function(){
     } ) 
   }
 
-  for (el of document.querySelectorAll('.left-button')) {
-    locate(el)
-    window.addEventListener('resize', locate.bind(null, el))
-    el.addEventListener('click', triggerButton.bind(null, el, target));
-  }
+  // for (el of document.querySelectorAll('.left-button')) {
+  //   locate(el)
+  //   window.addEventListener('resize', locate.bind(null, el))
+  //   el.addEventListener('click', triggerButton.bind(null, el, target));
+  // }
+
+  // for (el of document.querySelectorAll('.search_bar')) {
+  //   el.addEventListener('input', function(e){
+  //     query = e.target.value;
+  //     console.log(query)
+  //     searchables = document.querySelectorAll('[data-search]')
+  //     for (searchable of searchables) {
+  //       if (searchable.getAttribute('data-search').indexOf(query) == -1) {
+  //         searchable.classList.add('hidden');
+  //       } else { searchable.classList.remove('hidden'); }
+  //     }
+  //   })
+  // }
 })

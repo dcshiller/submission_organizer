@@ -1,25 +1,28 @@
 =render 'partials/title', title: 'Journals'
 
 - id = "journal_edit_form"
-.left-button data-target=id data-mode='add'
-  i.material-icons add
 
+= form_tag journals_path, method: 'get' do
+  = text_field_tag :query, params[:query], class: 'search_bar'
+  button
+    i.material-icons search
 
-table.table
-  thead
-    th Title
-    th Lastest Activity
+.container style='max-width: 100%'
+  table.table
+    thead
+      th width='80%' Title
+      th width='20%' Lastest Activity
+    tbody.scrollbox
+      tr.form_row data-address=id
+        td.hidden
+          = simple_form_for @presenter.journal, html: { data: { form_id: id } } do |f|
+            = f.input :title, label: false, placeholder: 'New Journal'
+        td.hidden
+      - @presenter.journals.each do |j|
+        tr data-url=journal_path(j) data-search=j.title
+          td width='80%'= j
+          td width='20%'= j.last_activity.for_user(current_user).first&.date || '-'
 
-  tbody
-    tr.form_row data-address=id
-      td.hidden
-        = simple_form_for @presenter.journal do |f|
-          = f.input :title, label: false
-      td.hidden
-  - @presenter.journals_by_last_activity.each do |j|
-    tr data-url=journal_path(j)
-      td= j
-      td= j.last_activity_for(current_user) || '-'
-
-.row.center
-  = link_to "new journal", new_journal_path
+  .left-button data-target=id data-mode='add'
+    i.material-icons add
+  div= will_paginate (@presenter.journals)

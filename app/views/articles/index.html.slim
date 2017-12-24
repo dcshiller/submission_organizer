@@ -1,5 +1,10 @@
 =render 'partials/title', title: 'Articles'
 
+- id = "article_edit_form"
+.left-button data-target=id data-mode='add'
+  i.material-icons add
+
+
 table.table
   thead
     tr
@@ -8,6 +13,13 @@ table.table
       th
 
   tbody
+    tr.form_row data-address=id
+      td.hidden
+        = simple_form_for @presenter.article, html: { data: { form_id: id } } do |f|
+          = f.input :title, label: false, placeholder: "New Article"
+      td.hidden
+      td.hidden
+  tbody.scrollbox
     - @presenter.articles.each do |article|
       tr data-url=article_path(article)
         td= article
@@ -17,8 +29,3 @@ table.table
             i.material-icons.edit mode_edit
           = link_to article, data: { confirm: 'Are you sure?' }, method: :delete do
             i.material-icons.trash delete
-
-br
-
-.row.center
-  = link_to 'New Article', new_article_path
