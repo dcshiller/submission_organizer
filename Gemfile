@@ -10,6 +10,7 @@ end
 gem 'rails', '~> 5.1.1'
 gem 'bulma-rails'
 gem 'slim-rails'
+gem 'pry-rails'
 gem 'simple_form'
 gem 'bcrypt'
 # Use sqlite3 as the database for Active Record

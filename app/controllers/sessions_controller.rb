@@ -23,11 +23,11 @@ class SessionsController < ApplicationController
 
   def handle_login
     login_as user
-    redirect_to root_path 
+    redirect_to root_path
   end
-  
+
   def user
-    User.find_by(email: params[:user][:email])
+    User.find_by('email ILIKE ?', params[:user]&.dig(:email))
   end
 
   def password_match?

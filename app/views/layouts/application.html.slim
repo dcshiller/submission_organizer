@@ -9,16 +9,20 @@ html
 
   body.container
     nav.level.is-mobile
-      .level-left.column.is-one-third
-      - unless request.env['PATH_INFO'] == "/users/#{current_user.id}"
-        .level-item.column.is-one-third.has-text-centered: h1.title.is-3: p.level-item= link_to current_user do
-          i.material-icons home
-        .level-right.column.is-one-third
-        / .row
-        /   p.level-item= link_to 'journals', journals_path
-        /   p.level-item= link_to 'articles', articles_path
-        /   p.level-item= link_to 'submissions', submissions_path
+      .level-item.column.is-one-third.has-text-centered
+      .level-item.column.is-one-third.has-text-centered
+        .row.baseline
+          a.is-4
+            i.material-icons settings
+          / - unless request.env['PATH_INFO'] == "/users/#{current_user&.id}"
+          h1.title.is-3
+            p.level-item= link_to current_user do
+              i.material-icons home
+          = link_to  sessions_path, method: 'DESTROY', class: 'is-4' do
+            i.material-icons exit_to_app
+      .level-item.column.is-one-third.has-text-centered
+
     #content_container.container.column.middle
       .row.center
-        .box.column.is-two-thirds
+        .box
           = yield

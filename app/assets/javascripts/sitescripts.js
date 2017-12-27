@@ -22,7 +22,6 @@ function saveForm(button, row){
 
 // function locate(el){
 //   id = el.getAttribute('data-target');
-//   target = document.querySelector("[data-address='" + id +"']");
 //   container = document.querySelector('.row').getBoundingClientRect()
 //   // el.style.top = target.getBoundingClientRect().y - container.y + 65;
 //   // el.style.left = target.getBoundingClientRect().x - container.x - 20;
@@ -37,11 +36,11 @@ document.addEventListener('turbolinks:load', function(){
     } ) 
   }
 
-  // for (el of document.querySelectorAll('.left-button')) {
-  //   locate(el)
-  //   window.addEventListener('resize', locate.bind(null, el))
-  //   el.addEventListener('click', triggerButton.bind(null, el, target));
-  // }
+  for (el of document.querySelectorAll('.left-button')) {
+    let id = el.getAttribute('data-target');
+    let target = document.querySelector("[data-address='" + id +"']");
+    el.addEventListener('click', triggerButton.bind(null, el, target));
+  }
 
   // for (el of document.querySelectorAll('.search_bar')) {
   //   el.addEventListener('input', function(e){

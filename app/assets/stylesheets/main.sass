@@ -51,7 +51,10 @@ a:hover .title
   margin-bottom: 10px
 
 #content_container
-  min-height: 90%
+  min-height: 80%
+  max-width: 800px
+  .box
+    max-width: 800px
 
 .clickable, [data-url], [data-url] *
   cursor: pointer
@@ -61,3 +64,9 @@ a:hover .title
 
 .zeroheight, .zeroheight *
   max-height: 0
+
+.baseline
+  align-items: baseline
+
+.level.is-mobile p.level-item
+  margin-right: 0

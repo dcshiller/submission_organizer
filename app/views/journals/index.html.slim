@@ -2,16 +2,21 @@
 
 - id = "journal_edit_form"
 
-= form_tag journals_path, method: 'get' do
-  = text_field_tag :query, params[:query], class: 'search_bar'
-  button
-    i.material-icons search
+.row.center
+  = form_tag journals_path, method: 'get', class: 'search_bar' do
+    = text_field_tag :query, params[:query], class: 'search_bar'
+    button
+      i.material-icons search
 
-.container style='max-width: 100%'
+.container style='max-width: 100%; min-height: 50%'
   table.table
     thead
-      th width='80%' Title
-      th width='20%' Lastest Activity
+      th width='80%'
+        - title_order = params[:order] == "journals.title DESC" ? 'journals.title ASC' : 'journals.title DESC'
+        = link_to 'Title', journals_path(order: title_order)
+      th width='20%'
+        - activity_order = params[:order] == "latest_events_by_users.latest_date DESC" ? 'latest_events_by_users.latest_date ASC' : 'latest_events_by_users.latest_date DESC'
+        = link_to 'Latest Activity', journals_path(order: activity_order)
     tbody.scrollbox
       tr.form_row data-address=id
         td.hidden

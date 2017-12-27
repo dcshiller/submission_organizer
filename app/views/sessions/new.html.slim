@@ -1,5 +1,7 @@
-h1 Session New
+=render 'partials/title', title: 'Log In'
+
 = simple_form_for @presenter.user, url: sessions_path do |f|
   = f.input :email
   = f.input :password
-  = f.button :submit
+  .row.center
+    = f.button :submit, 'Log In'
