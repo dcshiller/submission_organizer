@@ -8,10 +8,10 @@ class JournalPresenter
   end
 
   def journals
-    ar = Journal.includes(:latest_events_by_user).
-      where('latest_events_by_users.user_id IS NULL OR latest_events_by_users.user_id = ?', user.id).
+    ar = Journal.includes(:latest_journal_events_by_user).
+      where('latest_journal_events_by_users.user_id IS NULL OR latest_journal_events_by_users.user_id = ?', user.id).
       where("title ILIKE ?", "%#{params[:query]}%").
-      order((params[:order] || 'journals.title') + " NULLS LAST", 'latest_events_by_users.latest_date DESC NULLS LAST')
+      order((params[:order] || 'journals.title') + " NULLS LAST", 'latest_journal_events_by_users.latest_date DESC NULLS LAST')
     ar.paginate(page: params[:page], per_page: 10, total_entries: ar.count('DISTINCT journals.id'))
   end
 end

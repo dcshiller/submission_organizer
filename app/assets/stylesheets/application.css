@@ -12,5 +12,6 @@
  *
  *= require_tree .
  *= require_self
+ *= require animate
  *= require scaffolds.scss
 */

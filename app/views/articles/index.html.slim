@@ -5,9 +5,11 @@
 .container style='max-width: 100%; min-height: 50%'
   table.table
     thead
-      th width='70%' Title
-      th width='20%' Last Update
-      th width='10%'
+      - title_order = params[:order] == "articles.title DESC" ? 'articles.title ASC' : 'articles.title DESC'
+      th width='70%'= link_to 'Title', articles_path(order: title_order)
+      - activity_order = params[:order] == "latest_article_events_by_users.latest_date DESC" ? 'latest_article_events_by_users.latest_date ASC' : 'latest_article_events_by_users.latest_date DESC'
+      th width='30%'= link_to 'Latest', articles_path(order: activity_order)
+      / th width='10%'
 
     tbody
       tr.form_row data-address=id
@@ -15,17 +17,17 @@
           = simple_form_for @presenter.article, html: { data: { form_id: id } } do |f|
             = f.input :title, label: false, placeholder: "New Article"
         td.hidden
-        td.hidden
+        / td.hidden
     tbody.scrollbox
       - @presenter.articles.each do |article|
         tr data-url=article_path(article)
           td= article
           td= article.submission_events.order(date: :desc).first&.date || '-'
-          td.action_links
-            = link_to edit_article_path(article) do
-              i.material-icons.edit mode_edit
-            = link_to article, data: { confirm: 'Are you sure?' }, method: :delete do
-              i.material-icons.trash delete
+          / td.action_links
+          /   = link_to edit_article_path(article) do
+          /     i.material-icons.edit mode_edit
+          /   = link_to article, data: { confirm: 'Are you sure?' }, method: :delete do
+          /     i.material-icons.trash delete
   .left-button data-target=id data-mode='add'
     i.material-icons add
 

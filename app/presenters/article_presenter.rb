@@ -8,6 +8,9 @@ class ArticlePresenter
   end
 
   def articles
-    user.articles.paginate(per_page: 10, page: params[:page])
+    user.articles.
+         includes(:latest_article_events_by_user).
+         order(params[:order] || 'articles.title').
+         paginate(per_page: 10, page: params[:page])
   end
 end

@@ -17,7 +17,7 @@
         - title_order = params[:order] == "journals.title DESC" ? 'journals.title ASC' : 'journals.title DESC'
         = link_to 'Title', journals_path(order: title_order)
       th width='20%'
-        - activity_order = params[:order] == "latest_events_by_users.latest_date DESC" ? 'latest_events_by_users.latest_date ASC' : 'latest_events_by_users.latest_date DESC'
+        - activity_order = params[:order] == "latest_journal_events_by_users.latest_date DESC" ? 'latest_journal_events_by_users.latest_date ASC' : 'latest_journal_events_by_users.latest_date DESC'
         = link_to 'Latest', journals_path(order: activity_order)
     tbody.scrollbox
       tr.form_row data-address=id

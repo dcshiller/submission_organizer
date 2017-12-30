@@ -9,6 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 gem 'bulma-rails'
+gem "animate-rails"
 gem 'slim-rails'
 gem 'pry-rails'
 gem 'simple_form'

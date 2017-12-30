@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   has_many :submissions
   has_many :submission_events, through: :submissions, source: :events
   has_many :journals, through: :submissions
+  has_one :latest_article_events_by_user
 
   def to_s
     title.size > 40 ? short_title : title

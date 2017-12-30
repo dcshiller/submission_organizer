@@ -1,7 +1,7 @@
 class Addlatesteventview < ActiveRecord::Migration[5.1]
   def up
     execute <<-SQL
-      CREATE VIEW latest_events_by_users AS
+      CREATE VIEW latest_journal_events_by_users AS
         SELECT
           DISTINCT ON (journals.id) journals.id AS journal_id, articles.user_id AS user_id, submission_events.date AS latest_date
         FROM
@@ -18,6 +18,6 @@ class Addlatesteventview < ActiveRecord::Migration[5.1]
   end
 
   def down
-    execute "DROP VIEW latest_events_by_users"
+    execute "DROP VIEW latest_journal_events_by_users"
   end
 end
