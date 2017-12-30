@@ -1,7 +1,12 @@
-=render 'partials/title', title: 'Log In'
+- content_for :no_header, true
+= render 'partials/title', title: 'Log In'
 
 = simple_form_for @presenter.user, url: sessions_path do |f|
-  = f.input :email
-  = f.input :password
-  .row.center
-    = f.button :submit, 'Log In'
+  = f.input :email, wrapper_html: { class: 'column' }
+  = f.input :password, wrapper_html: { class: 'column' }
+  .row.space-around
+    = f.button :submit, 'Log In', class: 'is-primary'
+em
+  | Need an account? Create one
+  =< link_to 'here', new_user_path
+  | .

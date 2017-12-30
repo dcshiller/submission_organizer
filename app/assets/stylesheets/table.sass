@@ -1,5 +1,6 @@
 table
   table-layout: fixed
+  width: 100%
   thead
     border-bottom: 3px solid grey
   tbody
@@ -42,11 +43,11 @@ table
 
 .left-button
   cursor: pointer
-  position: absolute
-  top: 50px
-  left: -30px
   display: flex
   flex-direction: column
+  left: -30px
+  position: absolute
+  top: 35px
 
   i.material-icons
     color: lightgrey
@@ -55,17 +56,18 @@ table
       color: black
 
 .pagination
-  position: absolute
-  top: 50px
-  right: -20px
+  align-items: left
+  border-left: 1px solid grey
   display: flex
   flex-direction: column
-  border-left: 1px solid grey
+  right: -20px
+  top: 50px
+  position: absolute
   .next_page, .previous_page
     display: none
   a, em
-    padding: 2px
     margin: 1px
+    padding: 2px
     transform: translate(-2.5px)
     border:
       bottom: 1px solid grey

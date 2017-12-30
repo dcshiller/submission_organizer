@@ -1,30 +1,34 @@
 =render 'partials/title', title: 'Events'
 
 - id = "event_edit_form"
-.left-button data-target=id data-mode='add'
-  i.material-icons add
 
+.container style='max-width: 100%; min-height: 50%'
 
-table
-  thead
-    th Article
-    th Event
-    th Kind
-    th Date
-  tbody
-    tr.form_row data-address=id
-      td.hidden colspan=4 = simple_form_for @presenter.submission_event, html: { data: { form_id: id } } do |f|
-          .row
-            = f.input :article, label: false, wrapper: false
-            = f.input :event_type, label: false, wrapper: false
-            = f.input :event_subtype, label: false, wrapper: false
-            = f.input :date, as: :string, label: false, wrapper: false
-    - @presenter.submission_events.each do |event|
-      tr data-url=submission_event_url(event)
-        td= event.article
-        td= event.event_type
-        td= event.event_subtype
-        td= event.date
+  table
+    thead
+      th Article
+      th Event
+      th Kind
+      th Date
+    tbody
+      tr.form_row data-address=id
+        td.hidden colspan=4 = simple_form_for @presenter.submission_event, html: { data: { form_id: id } } do |f|
+            .row
+              = f.input :article, label: false, wrapper: false
+              = f.input :event_type, label: false, wrapper: false
+              = f.input :event_subtype, label: false, wrapper: false
+              = f.input :date, as: :string, label: false, wrapper: false
+      - @presenter.submission_events.each do |event|
+        tr data-url=submission_event_url(event)
+          td= event.article
+          td= event.event_type
+          td= event.event_subtype
+          td= event.date
 
-.row.center
-  = link_to 'New Event', new_submission_event_path
+  .left-button data-target=id data-mode='add'
+    i.material-icons add
+
+  div= will_paginate(@presenter.submission_events, inner_window: 2, previous_label: nil, next_label: nil)
+
+/ .row.center
+/   = link_to 'New Event', new_submission_event_path

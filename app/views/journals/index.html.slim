@@ -1,3 +1,5 @@
+- content_for :max_width, '800px'
+
 =render 'partials/title', title: 'Journals'
 
 - id = "journal_edit_form"
@@ -16,7 +18,7 @@
         = link_to 'Title', journals_path(order: title_order)
       th width='20%'
         - activity_order = params[:order] == "latest_events_by_users.latest_date DESC" ? 'latest_events_by_users.latest_date ASC' : 'latest_events_by_users.latest_date DESC'
-        = link_to 'Latest Activity', journals_path(order: activity_order)
+        = link_to 'Latest', journals_path(order: activity_order)
     tbody.scrollbox
       tr.form_row data-address=id
         td.hidden
@@ -30,4 +32,4 @@
 
   .left-button data-target=id data-mode='add'
     i.material-icons add
-  div= will_paginate (@presenter.journals)
+  div= will_paginate(@presenter.journals, inner_window: 2, previous_label: nil, next_label: nil)

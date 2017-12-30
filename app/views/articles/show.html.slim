@@ -33,8 +33,3 @@ p.mb-5x
           = ' - '
           = s.last_event.date
         td= s.last_event.event_subtype
-/ .mb-40x
-/ .row.center
-/   = link_to 'Articles', articles_path
-/   ' |
-/   = link_to 'New Submission', new_submission_path(submission: { article_id: @article.id })

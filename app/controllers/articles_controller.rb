@@ -42,7 +42,7 @@ private
 
   def init_presenter
     set_article
-    @presenter = ArticlePresenter.new(current_user, @article)
+    @presenter = ArticlePresenter.new(current_user, @article, params)
   end
 
   def set_article

@@ -23,7 +23,7 @@ class SubmissionEventsController < ApplicationController
 
   def init_presenter
     set_submission_event
-    @presenter = SubmissionEventPresenter.new(current_user, @submission_event)
+    @presenter = SubmissionEventPresenter.new(current_user, @submission_event, params)
   end
 
   def submission_event_params_are_valid?

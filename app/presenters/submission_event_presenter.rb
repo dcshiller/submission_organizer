@@ -1,9 +1,10 @@
 class SubmissionEventPresenter
-  attr_reader :user, :submission_event
+  attr_reader :user, :submission_event, :params
 
-  def initialize(user, submission_event)
+  def initialize(user, submission_event, params)
     @user = user
     @submission_event = submission_event
+    @params = params
   end
 
   def submission
@@ -11,7 +12,7 @@ class SubmissionEventPresenter
   end
 
   def submission_events
-    user.events
+    user.events.paginate(per_page: 10, page: params[:page])
   end
 
   def submission_article

@@ -1,20 +1,23 @@
 =render 'partials/title', title: 'Submissions'
 
-table.mb-20x
-  thead
-    tr
-      th Article
-      th Journal
-      th colspan=3 Actions
-      th Last Update
-  tbody
-    - @presenter.submissions.each do |submission|
-      tr data-url=submission_path(submission)
-        td = submission.article
-        td = submission.journal
-        td = link_to 'Show', submission
-        td = link_to 'Edit', edit_submission_path(submission)
-        td = link_to 'Destroy', submission, data: { confirm: 'Are you sure?' }, method: :delete
-        td = submission.events.order(date: :desc).pluck(:date).first
-.row.center
-  = link_to 'New Submission', new_submission_path
+.container style='max-width: 100%; min-height: 50%'
+  table.mb-20x
+    thead
+      tr
+        th Article
+        th Journal
+        th colspan=3 Actions
+        th Last Update
+    tbody
+      - @presenter.submissions.each do |submission|
+        tr data-url=submission_path(submission)
+          td = submission.article
+          td = submission.journal
+          td = link_to 'Show', submission
+          td = link_to 'Edit', edit_submission_path(submission)
+          td = link_to 'Destroy', submission, data: { confirm: 'Are you sure?' }, method: :delete
+          td = submission.events.order(date: :desc).pluck(:date).first
+  div= will_paginate(@presenter.submissions, inner_window: 2, previous_label: nil, next_label: nil)
+
+  .row.center
+    = link_to 'New Submission', new_submission_path

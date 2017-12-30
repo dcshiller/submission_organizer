@@ -11,12 +11,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+  render :show, layout: 'dashboard'
+  end
 
 private
-  
+
   def init_presenter
-    @presenter = UserPresenter.new(current_user)
+    @presenter = UserPresenter.new(current_user || User.new)
   end
 
   def save_user

@@ -1,6 +1,15 @@
-h1 User New
+- content_for :no_header, true
+
+= render 'partials/title', title: 'Sign Up'
+
 = simple_form_for @presenter.user do |f|
-  = f.input :name
-  = f.input :email
-  = f.input :password
-  = f.button :submit, class: 'button'
+  = f.input :name, wrapper_html: { class: 'column' }
+  = f.input :email, wrapper_html: { class: 'column' }
+  = f.input :password, wrapper_html: { class: 'column' }
+  = f.input :password, label: 'Re-enter Password', wrapper_html: { class: 'column' }
+  .row.space-around
+    = f.button :submit, 'Sign Up', class: 'is-primary', wrapper_html: { class: 'column' }
+em
+  | Have an account? Log in
+  =< link_to 'here', new_session_path
+  | .

@@ -1,31 +1,32 @@
 =render 'partials/title', title: 'Articles'
 
 - id = "article_edit_form"
-.left-button data-target=id data-mode='add'
-  i.material-icons add
 
+.container style='max-width: 100%; min-height: 50%'
+  table.table
+    thead
+      th width='70%' Title
+      th width='20%' Last Update
+      th width='10%'
 
-table.table
-  thead
-    tr
-      th Title
-      th Last Update
-      th
+    tbody
+      tr.form_row data-address=id
+        td.hidden
+          = simple_form_for @presenter.article, html: { data: { form_id: id } } do |f|
+            = f.input :title, label: false, placeholder: "New Article"
+        td.hidden
+        td.hidden
+    tbody.scrollbox
+      - @presenter.articles.each do |article|
+        tr data-url=article_path(article)
+          td= article
+          td= article.submission_events.order(date: :desc).first&.date || '-'
+          td.action_links
+            = link_to edit_article_path(article) do
+              i.material-icons.edit mode_edit
+            = link_to article, data: { confirm: 'Are you sure?' }, method: :delete do
+              i.material-icons.trash delete
+  .left-button data-target=id data-mode='add'
+    i.material-icons add
 
-  tbody
-    tr.form_row data-address=id
-      td.hidden
-        = simple_form_for @presenter.article, html: { data: { form_id: id } } do |f|
-          = f.input :title, label: false, placeholder: "New Article"
-      td.hidden
-      td.hidden
-  tbody.scrollbox
-    - @presenter.articles.each do |article|
-      tr data-url=article_path(article)
-        td= article
-        td= article.submission_events.order(date: :desc).first&.date || '-'
-        td.action_links
-          = link_to edit_article_path(article) do
-            i.material-icons.edit mode_edit
-          = link_to article, data: { confirm: 'Are you sure?' }, method: :delete do
-            i.material-icons.trash delete
+  div= will_paginate(@presenter.articles, inner_window: 2, previous_label: nil, next_label: nil)

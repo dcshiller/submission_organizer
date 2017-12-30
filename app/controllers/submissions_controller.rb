@@ -47,7 +47,7 @@ class SubmissionsController < ApplicationController
 
   def init_presenter
     set_submission
-    @presenter = SubmissionPresenter.new(current_user, @submission)
+    @presenter = SubmissionPresenter.new(current_user, @submission, params)
   end
 
   def set_submission

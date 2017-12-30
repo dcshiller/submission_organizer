@@ -1,5 +1,7 @@
-.level
-  .level-item: h1.title.is-4 Hello #{current_user.name}!
+- content_for :max_width, '1200px'
+
+/ .level
+/   .level-item: h1.title.is-4 Hello #{current_user.name}!
 .tile.is-ancestor
   .tile.is-parent data-url=articles_path
     .tile.is-child.box.notification.is-info

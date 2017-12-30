@@ -10,9 +10,7 @@ html
   body.container
     - unless content_for :no_header
       = render 'partials/header'
-    - else
-      nav.level.is-mobile
     #content_container.container.column.middle
       .row.center
-        .box style="max-width: #{content_for :max_width}"
+        div style="max-width: #{content_for :max_width}"
           = yield
