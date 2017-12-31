@@ -6,6 +6,9 @@ table
   tbody
     tr, td
       background: none
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
     tr:hover
       background: lighten(lightgrey, 10%)
     tr:not(:last-of-type), tr:last-of-type.form_row

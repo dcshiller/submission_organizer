@@ -6,7 +6,7 @@ class Article < ApplicationRecord
   has_one :latest_article_events_by_user
 
   def to_s
-    title.size > 40 ? short_title : title
+    title
   end
 
   def short_title

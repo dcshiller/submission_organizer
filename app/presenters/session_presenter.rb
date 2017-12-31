@@ -1,4 +1,4 @@
-class SessionPresenter
+class SessionPresenter < ApplicationPresenter
   def initialize
   end
 

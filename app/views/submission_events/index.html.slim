@@ -6,10 +6,10 @@
 
   table
     thead
-      th Article
-      th Event
-      th Kind
-      th Date
+      th= @presenter.title_order_link
+      th= @presenter.type_order_link
+      th= @presenter.subtype_order_link
+      th= @presenter.date_order_link
     tbody
       tr.form_row data-address=id
         td.hidden colspan=4 = simple_form_for @presenter.submission_event, html: { data: { form_id: id } } do |f|

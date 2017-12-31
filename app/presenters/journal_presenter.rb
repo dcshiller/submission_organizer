@@ -1,4 +1,4 @@
-class JournalPresenter
+class JournalPresenter < ApplicationPresenter
   attr_reader :user, :journal, :params
 
   def initialize(user, journal, params)
@@ -13,5 +13,17 @@ class JournalPresenter
       where("title ILIKE ?", "%#{params[:query]}%").
       order((params[:order] || 'journals.title') + " NULLS LAST", 'latest_journal_events_by_users.latest_date DESC NULLS LAST')
     ar.paginate(page: params[:page], per_page: 10, total_entries: ar.count('DISTINCT journals.id'))
+  end
+
+  def title_order_link
+    order_sql = order_sql_from('journals.title', params[:order])
+    directional = direction_from('journals.title', params[:order])
+    link_to "Title #{directional}", journals_path(order: order_sql)
+  end
+
+  def activity_order_link
+    order_sql = order_sql_from('latest_journal_events_by_users.latest_date', params[:order])
+    directional = direction_from('latest_journal_events_by_users.latest_date', params[:order])
+    link_to "Latest #{directional}", journals_path(order: order_sql)
   end
 end

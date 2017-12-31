@@ -2,10 +2,11 @@ nav.level.is-mobile
   .level-item.column.is-one-third.has-text-centered
   .level-item.column.is-one-third.has-text-centered#menu_bar
     i.material-icons menu
+    br.mb-10x
     .row.baseline.zoomIn.animated
       a.is-4
         i.material-icons settings
-      h1.title.is-3
+      h1.title.is-4
         p.level-item= link_to current_user do
           i.material-icons home
       = link_to sessions_path, method: 'DESTROY', class: 'is-4' do

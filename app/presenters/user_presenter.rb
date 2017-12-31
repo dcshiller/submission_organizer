@@ -1,4 +1,4 @@
-class UserPresenter
+class UserPresenter < ApplicationPresenter
   attr_reader :user
 
   def initialize(user)

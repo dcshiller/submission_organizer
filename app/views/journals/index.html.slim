@@ -13,12 +13,8 @@
 .container style='max-width: 100%; min-height: 50%'
   table.table
     thead
-      th width='80%'
-        - title_order = params[:order] == "journals.title DESC" ? 'journals.title ASC' : 'journals.title DESC'
-        = link_to 'Title', journals_path(order: title_order)
-      th width='20%'
-        - activity_order = params[:order] == "latest_journal_events_by_users.latest_date DESC" ? 'latest_journal_events_by_users.latest_date ASC' : 'latest_journal_events_by_users.latest_date DESC'
-        = link_to 'Latest', journals_path(order: activity_order)
+      th width='80%'= @presenter.title_order_link
+      th width='20%'= @presenter.activity_order_link
     tbody.scrollbox
       tr.form_row data-address=id
         td.hidden

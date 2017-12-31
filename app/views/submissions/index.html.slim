@@ -4,19 +4,15 @@
   table.mb-20x
     thead
       tr
-        th Article
-        th Journal
-        th colspan=3 Actions
-        th Last Update
+        th= @presenter.title_order_link
+        th= @presenter.journal_order_link
+        th= @presenter.activity_order_link
     tbody
       - @presenter.submissions.each do |submission|
         tr data-url=submission_path(submission)
           td = submission.article
           td = submission.journal
-          td = link_to 'Show', submission
-          td = link_to 'Edit', edit_submission_path(submission)
-          td = link_to 'Destroy', submission, data: { confirm: 'Are you sure?' }, method: :delete
-          td = submission.events.order(date: :desc).pluck(:date).first
+          td = submission.events.last.date
   div= will_paginate(@presenter.submissions, inner_window: 2, previous_label: nil, next_label: nil)
 
   .row.center

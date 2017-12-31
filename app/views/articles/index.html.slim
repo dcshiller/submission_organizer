@@ -5,10 +5,8 @@
 .container style='max-width: 100%; min-height: 50%'
   table.table
     thead
-      - title_order = params[:order] == "articles.title DESC" ? 'articles.title ASC' : 'articles.title DESC'
-      th width='70%'= link_to 'Title', articles_path(order: title_order)
-      - activity_order = params[:order] == "latest_article_events_by_users.latest_date DESC" ? 'latest_article_events_by_users.latest_date ASC' : 'latest_article_events_by_users.latest_date DESC'
-      th width='30%'= link_to 'Latest', articles_path(order: activity_order)
+      th width='70%'= @presenter.title_order_link
+      th width='30%'= @presenter.latest_activity_link
       / th width='10%'
 
     tbody
