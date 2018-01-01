@@ -1,7 +1,11 @@
-= render 'partials/title', title: 'Journal', subtitle: @presenter.journal.title
+- content_for :back_link_path, journals_path
 
+= render 'partials/title', title: @presenter.journal.title
 
 p#notice = notice
+
+.row.center.mb-20x
+  h1.title.is-6 Submissions
 
 p.mb-20x
   table
@@ -16,7 +20,5 @@ p.mb-20x
         td= submission.last_event&.date || '-'
         td= submission.last_event&.decision || '-'
 
+
 .mb-40x
-.row.center.buttons
-  = link_to 'Edit', edit_journal_path(@presenter.journal), class: 'button'
-  = link_to 'Journals', journals_path,  class: 'button'

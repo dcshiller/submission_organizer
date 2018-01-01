@@ -15,4 +15,7 @@ html
     #content_container.container.column.middle
       .row.center
         .box style="max-width: #{content_for :max_width}"
+          - if content_for?(:back_link_path)
+            = link_to yield(:back_link_path), class: 'back_link' do
+              i.material-icons keyboard_arrow_left
           = yield

@@ -1,5 +1,6 @@
-= render 'partials/title', title: 'Article', subtitle: @article.title
+- content_for :back_link_path, articles_path
 
+= render 'partials/title', title: 'Article', subtitle: @presenter.article.title
 
 p#notice = notice
 
@@ -8,26 +9,33 @@ p#notice = notice
     .column
       p
         strong Title:
-        =< @article.title
+        =< @presenter.article.title
       p
         strong User:
-        =< @article.user
+        =< @presenter.article.user
   div
-    = link_to edit_article_path(@article) do
+    = link_to edit_article_path(@presenter.article) do
       .button.outline
         i.material-icons mode_edit
-p.mb-5x
-  table
-    thead
-      tr
-        th Journal
-        th.t-center Dates
-        th Result
-    - @article.submissions.includes(:events).sort{ |s, t| t.events.map(&:date).max <=> s.events.map(&:date).max}.each do |s, i|
-      tr data-url=submission_url(s)
-        td= s
-        td
-          = s.events.order(:date).first.date
-          = ' - '
-          = s.last_event.date
-        td= s.last_event.event_subtype
+    = link_to article_path(@presenter.article), method: "DELETE" do
+      .button.outline
+        i.material-icons mode_edit
+
+- if @presenter.article.submissions.exists?
+  p.mb-5x
+    table
+      thead
+        tr
+          th Journal
+          th.t-center Dates
+          th Result
+      - @presenter.article.submissions.includes(:events).sort{ |s, t| t.events.map(&:date).max <=> s.events.map(&:date).max}.each do |s, i|
+        tr data-url=submission_url(s)
+          td= s
+          td
+            = s.events.order(:date).first.date
+            = ' - '
+            = s.last_event.date
+          td= s.last_event.event_subtype
+- else
+  .row.center: em No submissions yet

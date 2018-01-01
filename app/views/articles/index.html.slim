@@ -1,6 +1,9 @@
-=render 'partials/title', title: 'Articles'
+- content_for :back_link_path, user_path(current_user)
 
+=render 'partials/title', title: 'Articles'
 - id = "article_edit_form"
+
+.row.center#notice = notice
 
 .container style='max-width: 100%; min-height: 50%'
   table.table

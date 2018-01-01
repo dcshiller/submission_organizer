@@ -1,3 +1,5 @@
+- content_for :back_link_path, submissions_path
+
 = render 'partials/title', title: 'Submission'
 
 p#notice = notice
@@ -5,23 +7,27 @@ p#notice = notice
 p
   strong Article:
   =< @presenter.submission.article
-p
+p.mb-20x
   strong Journal:
   =< @presenter.submission.journal
 
 p
-  strong Events:
   table
-    - @presenter.submission.events.order(date: :desc).each do |event|
-        tr
-          td= event.event_type
-          td= link_to event.event_subtype, event
-          td= event.date
+    thead
+      th Event Type
+      th Event Subtype
+      th Date
+    tbody
+      - @presenter.submission.events.order(date: :desc).each do |event|
+          tr
+            td= event.event_type
+            td= link_to event.event_subtype, event
+            td= event.date
 .mb-10x
 
-.row.center
-  = link_to 'New Event', new_submission_event_path(submission_event: { submission_id: @presenter.submission.id })
-.row.center
-  = link_to 'Edit', edit_submission_path(@presenter.submission)
-  '  |
-  = link_to 'Back', submissions_path
+/ .row.center
+/   = link_to 'New Event', new_submission_event_path(submission_event: { submission_id: @presenter.submission.id })
+/ .row.center
+/   = link_to 'Edit', edit_submission_path(@presenter.submission)
+/   '  |
+/   = link_to 'Back', submissions_path

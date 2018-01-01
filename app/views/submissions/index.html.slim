@@ -1,3 +1,5 @@
+- content_for :back_link_path, user_path(current_user)
+
 =render 'partials/title', title: 'Submissions'
 
 .container style='max-width: 100%; min-height: 50%'
@@ -15,5 +17,5 @@
           td = submission.events.last.date
   div= will_paginate(@presenter.submissions, inner_window: 2, previous_label: nil, next_label: nil)
 
-  .row.center
-    = link_to 'New Submission', new_submission_path
+  / .row.center
+  /   = link_to 'New Submission', new_submission_path
