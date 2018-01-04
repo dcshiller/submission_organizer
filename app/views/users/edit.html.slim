@@ -1,6 +1,4 @@
-- content_for :no_header, true
-
-= render 'partials/title', title: 'Sign Up'
+= render 'partials/title', title: 'Edit Account'
 
 = simple_form_for @presenter.user, method: 'PATCH', url: user_path(current_user) do |f|
   = f.input :name, wrapper_html: { class: 'column' }

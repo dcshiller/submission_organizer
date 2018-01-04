@@ -29,7 +29,8 @@ function saveForm(button, row){
 
 document.addEventListener('turbolinks:load', function(){
   for (el of document.querySelectorAll('[data-url]')) {
-    el.addEventListener('dblclick', function(e){
+    let click_type = el.getAttribute('data-click-type') || 'click';
+    el.addEventListener(click_type, function(e){
       if (e.target.tagName != 'A'){
         window.location = e.currentTarget.getAttribute('data-url');
       }

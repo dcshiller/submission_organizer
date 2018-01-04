@@ -1,15 +1,15 @@
 - content_for :max_width, '1200px'
 
 .tile.is-ancestor#dashboard_tiles
-  .tile.is-parent data-url=articles_path
+  .tile.is-parent data-url=articles_path data-click-type='click'
     .tile.is-child.box.notification.is-info
       .title.is-5.mb-10x.t-center Articles
-      = if @presenter.articles.any?
+      - if @presenter.articles.any?
         .column.link_list
           - @presenter.articles.each do |article|
             .row
               = link_to article, article
-  .tile.is-parent data-url=journals_path
+  .tile.is-parent data-url=journals_path data-click-type='click'
     .tile.is-child.box.notification.is-success
       .title.is-5.mb-10x.t-center Journals
       - if @presenter.journals.any?
@@ -18,7 +18,7 @@
             .row
               = link_to journal, journal
 .tile.is-ancestor
-  .tile.is-parent data-url=submission_events_path
+  .tile.is-parent data-url=submission_events_path data-click-type='click'
     .tile.is-child.box.notification.is-warning
       .title.is-5.mb-10x.t-center Events
       - if @presenter.submission_events.any?
