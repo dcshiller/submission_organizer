@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :articles
   resources :submission_events
 
-  resources :users, only: [:new, :create, :show] do
+  resources :users, only: [:new, :create, :show, :edit, :update] do
     scope module: :users do
       resources :assignments, only: [:index, :show]
     end

@@ -5,6 +5,12 @@
 p#notice = notice
 
 p.mb-5x
+  strong Article:
+  =< link_to @presenter.submission_event.article, @presenter.submission_event.article
+p.mb-5x
+  strong Journal:
+  =< link_to @presenter.submission_event.journal, @presenter.submission_event.journal
+p.mb-5x
   strong Type:
   =< @presenter.submission_event.event_type
 p.mb-5x
@@ -13,11 +19,3 @@ p.mb-5x
 p.mb-5x
   strong Date:
   =< @presenter.submission_event.date
-
-/ .mb-10x
-/ .row.center
-/   = link_to 'Edit', edit_submission_event_path(@presenter.submission_event)
-/   '  |
-/   = link_to 'Submission Events', submission_events_path
-/   ' |
-/   = link_to 'New Submission', new_submission_path(submission: { submission_event_id: @presenter.submission_event.id })

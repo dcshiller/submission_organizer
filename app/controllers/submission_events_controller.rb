@@ -11,7 +11,7 @@ class SubmissionEventsController < ApplicationController
   def edit; end
 
   def create
-    if submission_event_params_are_valid? then save_submission_event and redirect_to submissions_path(@presenter.submission)
+    if submission_event_params_are_valid? then save_submission_event and redirect_to submission_events_path
     else new
     end
   end
@@ -31,14 +31,26 @@ class SubmissionEventsController < ApplicationController
   end
 
   def set_submission_event
-    @submission_event = SubmissionEvent.find_by(id: params[:id]) || SubmissionEvent.new(submission_params)
+    @submission_event = SubmissionEvent.find_by(id: params[:id]) || SubmissionEvent.new(submission_params_with_submission)
+  end
+
+  def submission_params_with_submission
+    if submission_params
+      submission_params[:submission] =
+        current_user.submissions.find_or_initialize_by(article_id: submission_params[:article], journal_id: submission_params[:journal])
+        submission_params.delete :article
+        submission_params.delete :journal
+    end
+    submission_params
   end
 
   def save_submission_event
-    @presenter.submission_event.save
+    if @presenter.submission_event.save
+      flash[:notice] = "New Event Created!"
+    end
   end
 
   def submission_params
-    params.permit(submission_event: [:submission_id, :event_type, :date])[:submission_event]
+    @_submission_params ||= params.permit(submission_event: [:article, :journal, :event_type, :event_subtype, :submission_id, :event_type, :date])[:submission_event]
   end
 end

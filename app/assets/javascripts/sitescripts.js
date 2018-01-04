@@ -29,7 +29,7 @@ function saveForm(button, row){
 
 document.addEventListener('turbolinks:load', function(){
   for (el of document.querySelectorAll('[data-url]')) {
-    el.addEventListener('click', function(e){
+    el.addEventListener('dblclick', function(e){
       if (e.target.tagName != 'A'){
         window.location = e.currentTarget.getAttribute('data-url');
       }

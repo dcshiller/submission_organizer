@@ -12,7 +12,17 @@ class UsersController < ApplicationController
   end
 
   def show
-  render :show, layout: 'dashboard'
+    render :show, layout: 'dashboard'
+  end
+
+  def edit
+  end
+
+  def update
+    if current_user.update(user_params)
+      redirect_to root_path
+    else render :edit
+    end
   end
 
 private
@@ -38,4 +48,4 @@ private
   def user_params_are_valid?
     user_from_params.valid?
   end
-  end
+end

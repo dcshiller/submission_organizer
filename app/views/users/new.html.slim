@@ -2,7 +2,7 @@
 
 = render 'partials/title', title: 'Sign Up'
 
-= simple_form_for @presenter.user do |f|
+= simple_form_for @presenter.user, method: 'POST', url: users_path do |f|
   = f.input :name, wrapper_html: { class: 'column' }
   = f.input :email, wrapper_html: { class: 'column' }
   = f.input :password, wrapper_html: { class: 'column' }

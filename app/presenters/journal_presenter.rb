@@ -8,7 +8,7 @@ class JournalPresenter < ApplicationPresenter
   end
 
   def journals
-    ar = Journal.includes(:latest_journal_events_by_user).
+    ar = Journal.right_joins(:latest_journal_events_by_user).
       where('latest_journal_events_by_users.user_id IS NULL OR latest_journal_events_by_users.user_id = ?', user.id).
       where("title ILIKE ?", "%#{params[:query]}%").
       order((params[:order] || 'journals.title') + " NULLS LAST", 'latest_journal_events_by_users.latest_date DESC NULLS LAST')

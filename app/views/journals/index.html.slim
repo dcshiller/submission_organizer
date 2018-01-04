@@ -21,7 +21,7 @@
         td.hidden
           = simple_form_for @presenter.journal, html: { data: { form_id: id } } do |f|
             = f.input :title, label: false, placeholder: 'New Journal'
-        td.hidden
+        td.hidden.barred_out
       - @presenter.journals.each do |j|
         tr data-url=journal_path(j) data-search=j.title
           td width='80%'= j

@@ -85,9 +85,16 @@ table
     border-left: 1px solid grey
     background: lightgrey
 
+.barred_out
+  background: repeating-linear-gradient( 45deg, darken(lightgrey, 10%), lightgrey 8px, white 8px, darken(white, 10%) 16px )
+
+
 .form_row
   position: relative
   overflow-y: visible
+  &.even_spaced
+    .control
+      width: 20%
   tr, td, form
     padding: 0
     margin: 0

@@ -1,31 +1,32 @@
 - content_for :max_width, '1200px'
 
-/ .level
-/   .level-item: h1.title.is-4 Hello #{current_user.name}!
-.tile.is-ancestor
+.tile.is-ancestor#dashboard_tiles
   .tile.is-parent data-url=articles_path
     .tile.is-child.box.notification.is-info
       .title.is-5.mb-10x.t-center Articles
-      .column.link_list
-        - @presenter.articles.each do |article|
-          .row
-            = link_to article, article
+      = if @presenter.articles.any?
+        .column.link_list
+          - @presenter.articles.each do |article|
+            .row
+              = link_to article, article
   .tile.is-parent data-url=journals_path
     .tile.is-child.box.notification.is-success
       .title.is-5.mb-10x.t-center Journals
-      .column.link_list
-        - @presenter.journals.each do |journal|
-          .row
-            = link_to journal, journal
+      - if @presenter.journals.any?
+        .column.link_list
+          - @presenter.journals.each do |journal|
+            .row
+              = link_to journal, journal
 .tile.is-ancestor
   .tile.is-parent data-url=submission_events_path
     .tile.is-child.box.notification.is-warning
       .title.is-5.mb-10x.t-center Events
-      .column
-        table.row.center
-          - @presenter.submission_events.each do |event|
-            tr data-url=submission_event_url(event)
-              td= event.article
-              td= event.event_type
-              td= event.event_subtype
-              td= event.date
+      - if @presenter.submission_events.any?
+        .column
+          table.row.center
+            - @presenter.submission_events.each do |event|
+              tr data-url=submission_event_url(event)
+                td= event.article
+                td= event.event_type
+                td= event.event_subtype
+                td= event.date
