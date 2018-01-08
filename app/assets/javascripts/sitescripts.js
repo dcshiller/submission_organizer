@@ -9,6 +9,8 @@ function addRow(button, row){
   row.querySelectorAll('td.hidden').forEach( function(nextEl) {nextEl.classList.remove('hidden'); } );
   button.setAttribute('data-mode', 'save');
   button.querySelector('i').innerText = 'save';
+  button.querySelector('i').classList.add('bounceIn');
+  button.querySelector('i').classList.add('animated');
 }
 
 function saveForm(button, row){
@@ -29,7 +31,7 @@ function saveForm(button, row){
 
 document.addEventListener('turbolinks:load', function(){
   for (el of document.querySelectorAll('[data-url]')) {
-    let click_type = el.getAttribute('data-click-type') || 'click';
+    let click_type = el.getAttribute('data-click-type') || 'dblclick';
     el.addEventListener(click_type, function(e){
       if (e.target.tagName != 'A'){
         window.location = e.currentTarget.getAttribute('data-url');
@@ -42,17 +44,8 @@ document.addEventListener('turbolinks:load', function(){
     let target = document.querySelector("[data-address='" + id +"']");
     el.addEventListener('click', triggerButton.bind(null, el, target));
   }
-
-  // for (el of document.querySelectorAll('.search_bar')) {
-  //   el.addEventListener('input', function(e){
-  //     query = e.target.value;
-  //     console.log(query)
-  //     searchables = document.querySelectorAll('[data-search]')
-  //     for (searchable of searchables) {
-  //       if (searchable.getAttribute('data-search').indexOf(query) == -1) {
-  //         searchable.classList.add('hidden');
-  //       } else { searchable.classList.remove('hidden'); }
-  //     }
-  //   })
-  // }
+  setTimeout(function(){
+      document.querySelector('#menu_bar').addEventListener('mouseenter', function(e){
+        e.target.classList.add('ready')
+      })}, 200)
 })

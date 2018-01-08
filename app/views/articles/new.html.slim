@@ -1,12 +1,5 @@
 - content_for :back_link_path, articles_path
 
-h1 New article
+=render 'partials/title', title: 'New Article'
 
-.tile
-  .tile.is-parent
-    .tile.is-child.notification
-      == render 'form'
-  .tile.is-parent
-    .tile.is-child
-
-= link_to 'Back', articles_path
+== render 'form'

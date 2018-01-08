@@ -1,5 +1,6 @@
-= simple_form_for(@submission) do |f|
+= simple_form_for(@presenter.submission) do |f|
   = f.error_notification
   = f.association :article
   = f.association :journal
-  = f.button :submit
+  .row.center
+    = f.button :submit, class: 'button is-primary'

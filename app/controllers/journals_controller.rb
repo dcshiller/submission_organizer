@@ -26,7 +26,7 @@ class JournalsController < ApplicationController
   end
 
   def save_journal
-    journal_from_params.save
+    if journal_from_params.save then flash[:notice] = 'Saved!' end
   end
 
   def journal_from_params

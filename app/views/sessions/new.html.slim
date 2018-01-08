@@ -1,7 +1,10 @@
 - content_for :no_header, true
 = render 'partials/title', title: 'Log In'
 
-= simple_form_for @presenter.user, url: sessions_path do |f|
+p#alert
+  .row.center= alert
+
+= simple_form_for @presenter.user, url: sessions_path, method: 'POST' do |f|
   = f.input :email, wrapper_html: { class: 'column' }
   = f.input :password, wrapper_html: { class: 'column' }
   .row.space-around

@@ -6,36 +6,46 @@
 .row.center
   p#notice= notice
 
-.container style='max-width: 100%; min-height: 50%'
+- if @presenter.submission_events.exists?
+  .container style='max-width: 100%; min-height: 50%'
+    table
+      thead
+        th= @presenter.title_order_link
+        th= 'Journal'
+        th= @presenter.type_order_link
+        th= @presenter.subtype_order_link
+        th= @presenter.date_order_link
+      tbody
+        tr.form_row.even_spaced data-address=id
+          td.hidden colspan=5 = simple_form_for @presenter.submission_event, html: { data: { form_id: id } } do |f|
+              .row
+                = f.input :article, collection: current_user.articles, label: false, wrapper: false
+                = f.input :journal, collection: Journal.all.order(:title), label: false, wrapper: false
+                = f.input :event_type, collection: SubmissionEvent::EVENT_TYPES, label: false, wrapper: false
+                = f.input :event_subtype, collection: SubmissionEvent::EVENT_SUBTYPES, label: false, wrapper: false
+                = f.input :date, as: :string, label: false, wrapper: false
+        - @presenter.submission_events.each do |event|
+          tr data-url=submission_event_url(event)
+            td= event.article
+            td= event.journal
+            td= event.event_type
+            td= event.event_subtype
+            td= event.date
 
-  table
-    thead
-      th= @presenter.title_order_link
-      th= 'Journal'
-      th= @presenter.type_order_link
-      th= @presenter.subtype_order_link
-      th= @presenter.date_order_link
-    tbody
-      tr.form_row.even_spaced data-address=id
-        td.hidden colspan=5 = simple_form_for @presenter.submission_event, html: { data: { form_id: id } } do |f|
-            .row
-              = f.input :article, collection: current_user.articles, label: false, wrapper: false
-              = f.input :journal, collection: Journal.all.order(:title), label: false, wrapper: false
-              = f.input :event_type, collection: SubmissionEvent::EVENT_TYPES, label: false, wrapper: false
-              = f.input :event_subtype, collection: SubmissionEvent::EVENT_SUBTYPES, label: false, wrapper: false
-              = f.input :date, as: :string, label: false, wrapper: false
-      - @presenter.submission_events.each do |event|
-        tr data-url=submission_event_url(event)
-          td= event.article
-          td= event.journal
-          td= event.event_type
-          td= event.event_subtype
-          td= event.date
+    .left-button data-target=id data-mode='add'
+      i.material-icons add
 
-  .left-button data-target=id data-mode='add'
-    i.material-icons add
+    div= will_paginate(@presenter.submission_events, inner_window: 2, previous_label: nil, next_label: nil)
 
-  div= will_paginate(@presenter.submission_events, inner_window: 2, previous_label: nil, next_label: nil)
-
-/ .row.center
-/   = link_to 'New Event', new_submission_event_path
+- elsif @presenter.user.submissions.exists?
+  p.mb-20x Looks like you don't have any events yet.
+  .row.center
+    = link_to 'Add an event', new_submission_event_path, class: 'button is-primary'
+- elsif @presenter.user.articles.exists?
+  p.mb-20x Looks like you don't have any submissions yet.
+  .row.center
+    = link_to 'Add a submission', new_submission_path, class: 'button is-primary'
+- else
+  p.mb-20x Looks like you don't have any articles yet.
+  .row.center
+    = link_to 'Add an article', new_article_path, class: 'button is-primary'

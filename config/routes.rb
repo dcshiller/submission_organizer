@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root to: 'users#show'
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :index, :create, :destroy]
   get 'logout', controller: 'sessions', action: 'destroy'
   resources :journals
   resources :articles

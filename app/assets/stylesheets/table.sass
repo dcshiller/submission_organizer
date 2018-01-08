@@ -53,10 +53,7 @@ table
   top: 35px
 
   i.material-icons
-    color: lightgrey
     font-size: 35px
-    &:hover
-      color: black
 
 .pagination
   align-items: left
@@ -86,22 +83,21 @@ table
     background: lightgrey
 
 .barred_out
-  background: repeating-linear-gradient( 45deg, darken(lightgrey, 10%), lightgrey 8px, white 8px, darken(white, 10%) 16px )
-
+  background: repeating-linear-gradient( 45deg, lightgrey, lighten(lightgrey, 10%) 8px, white 8px, darken(white, 10%) 16px )
 
 .form_row
-  position: relative
   overflow-y: visible
+  position: relative
   &.even_spaced
     .control
       width: 20%
   tr, td, form
+    margin: 0
     padding: 0
-    margin: 0
   input
-    margin: 0
     border: none
     box-shadow: none
+    margin: 0
   input[type='submit']
-    position: relative
     left: 0
+    position: relative

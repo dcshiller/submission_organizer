@@ -1,8 +1,7 @@
 class SessionPresenter < ApplicationPresenter
-  def initialize
-  end
+  attr_reader :user
 
-  def user
-    User.new
+  def initialize(user)
+    @user = user
   end
 end

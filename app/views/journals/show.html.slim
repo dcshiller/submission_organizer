@@ -4,21 +4,23 @@
 
 p#notice = notice
 
-.row.center.mb-20x
-  h1.title.is-6 Submissions
+- if @presenter.submissions.exists?
+  .row.center.mb-20x
+    h1.title.is-6 Submissions
+  p.mb-20x
+    table
+      thead
+        tr
+          th Title
+          th Last
+          th Result
+      - @presenter.submissions.each do |submission|
+        tr data-url=submission_path(submission)
+          td= submission.article
+          td= submission.last_event&.date || '-'
+          td= submission.last_event&.decision || '-'
 
-p.mb-20x
-  table
-    thead
-      tr
-        th Title
-        th Last
-        th Result
-    - @presenter.journal.submissions.each do |submission|
-      tr data-url=submission_path(submission)
-        td= submission.article
-        td= submission.last_event&.date || '-'
-        td= submission.last_event&.decision || '-'
-
-
-.mb-40x
+  .mb-40x
+- else
+  .row.center
+    = link_to 'Add a submission', new_submission_path(journal: @presenter.journal.id), class: 'button is-primary'

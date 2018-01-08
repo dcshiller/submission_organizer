@@ -1,10 +1,23 @@
 .box:last-child
   margin-bottom: -px
 
+@keyframes expand
+  0%
+    transform: scale(0)
+  20%
+    transform: scale(.9975)
+  80%
+    transform: scale(1.0025)
+
 .box
   position: relative
+  // animation: expand .1s
 
 .back_link
   position: absolute
   left: 0
   top: 50%
+  i
+    color: lightgrey
+    &:hover
+      color: black
