@@ -1,10 +1,10 @@
 
 window.lineFormController = {
-  toggleForms(){
+  toggleForms: function(){
     return document.querySelectorAll('.toggle_form');
   },
 
-  listenerFor(el){
+  listenerFor: function(el){
     for (let subel of el.parentNode.parentNode.querySelectorAll('input, select')){
       subel.disabled = !subel.disabled;
     }
@@ -13,7 +13,7 @@ window.lineFormController = {
     formParent.querySelector('input.as_input, select.as_input').focus();
   },
 
-  assignEvents(){
+  assignEvents: function(){
     let self = this;
     document.addEventListener('turbolinks:load', function(){
       for (let el of self.toggleForms()) {
