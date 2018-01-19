@@ -3,7 +3,7 @@ class SubmissionEvent < ApplicationRecord
   has_one :article, through: :submission
   has_one :journal, through: :submission
   EVENT_TYPES = %w(submission decision).freeze
-  EVENT_SUBTYPES = %w(initial revise\ &\ resubmit revision rejection acceptance conditional acceptance).freeze
+  EVENT_SUBTYPES = %w(initial revise\ &\ resubmit revision rejection acceptance conditional\ acceptance).freeze
 
   scope :decision, -> { where(event_type: :decision)}
 

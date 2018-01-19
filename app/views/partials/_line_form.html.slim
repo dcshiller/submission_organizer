@@ -1,0 +1,7 @@
+= simple_form_for model, html: { class: 'line_form' }, remote: true do |f|
+  .row
+    strong.label #{field.titleize.gsub('_', ' ')}:
+    = f.input field.downcase, input_html: { class: 'as_input', disabled: true }, label: false
+    = f.button :button, class: 'hidden' do
+      i.material-icons save
+    span: i.material-icons.toggle_form mode_edit

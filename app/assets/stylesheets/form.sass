@@ -24,3 +24,42 @@ form
   .field_with_errors
     background: inherit
     border: 1px dashed red
+
+.edit_form_list
+  .label
+    display: inline-block
+    min-width: 150px
+  .row
+    align-items: center
+    font-family: sans-serif
+    font-size: 16px
+    color: darkgrey
+    a
+      margin-left: 10px
+
+form.line_form
+  margin-bottom: 0px
+  .button
+    border: none
+    height: auto
+    padding: 0
+  .row .input_wrapper, .row .input_wrapper input, .row .input_wrapper select
+    border: none
+    box-shadow: inherit
+    font: inherit
+    font-size: 16px
+    height: auto
+    line-height: normal
+    padding: 5px
+    flex-grow: 1
+  .row .input_wrapper input, .row .input_wrapper select
+    background: lightgoldenrodyellow
+    &[disabled]
+      background: none
+      cursor: inherit
+  .row .control
+    display: flex
+    width: 100%
+    select
+      margin: 2px
+      width: auto

@@ -1,27 +1,19 @@
 - content_for :back_link_path, articles_path
 
-= render 'partials/title', title: 'Article', subtitle: @presenter.article.title
+- subtitle = capture do
+  span
+    = @presenter.article.title
+    = link_to article_path(@presenter.article), method: "DELETE", data: { confirm: 'Are you sure?' } do
+      .button.outline
+        i.material-icons delete
+= render 'partials/title', title: 'Article', subtitle: subtitle
 
 p#notice.row.center = notice
 
 .level
   .level-item
     .column
-      p
-        strong Title:
-        =< @presenter.article.title
-      p
-        strong User:
-        =< @presenter.article.user
-  .field.is-grouped
-    .control
-      = link_to edit_article_path(@presenter.article) do
-        .button.outline
-          i.material-icons mode_edit
-    .control
-      = link_to article_path(@presenter.article), method: "DELETE", data: { confirm: 'Are you sure?' } do
-        .button.outline
-          i.material-icons delete
+      = line_form(@presenter.article, 'Title')
 
 - if @presenter.article.submissions.exists?
   p.mb-5x

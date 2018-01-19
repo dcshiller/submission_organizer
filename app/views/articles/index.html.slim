@@ -25,7 +25,7 @@
             td= article.submission_events.order(date: :desc).first&.date || '-'
     .left-button data-target=id data-mode='add'
       i.material-icons add
-  div= will_paginate(@presenter.articles, inner_window: 2, previous_label: nil, next_label: nil)
+    div= will_paginate(@presenter.articles, inner_window: 2, previous_label: nil, next_label: nil)
 - else
   p.mb-20x Looks like you don't have any articles yet.
   .row.center

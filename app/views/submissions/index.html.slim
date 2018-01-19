@@ -3,8 +3,8 @@
 =render 'partials/title', title: 'Submissions'
 
 - if @presenter.submissions.exists?
-  .container.column style='max-width: 100%; min-height: 50%'
-    table.mb-20x
+  .container style='max-width: 100%; min-height: 50%'
+    table.table.mb-20x
       thead
         tr
           th= @presenter.title_order_link

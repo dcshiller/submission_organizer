@@ -22,10 +22,10 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @presenter.article.update(article_params)
         format.html { redirect_to @presenter.article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @presenter.article }
+        format.js { render js: 'alertify.success("Updated!")' }
       else
         format.html { render :edit }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.js { render js: 'alertify.error("Update failed!")' }
       end
     end
   end

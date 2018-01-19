@@ -4,18 +4,16 @@
 
 p#notice = notice
 
-p.mb-5x
-  strong Article:
-  =< link_to @presenter.submission_event.article, @presenter.submission_event.article
-p.mb-5x
-  strong Journal:
-  =< link_to @presenter.submission_event.journal, @presenter.submission_event.journal
-p.mb-5x
-  strong Type:
-  =< @presenter.submission_event.event_type
-p.mb-5x
-  strong Sub-type:
-  =< @presenter.submission_event.event_subtype
-p.mb-5x
-  strong Date:
-  =< @presenter.submission_event.date
+.edit_form_list
+  p.mb-5x.row
+    strong.label Article:
+    =< link_to @presenter.submission_event.article, @presenter.submission_event.article
+  p.mb-5x.row
+    strong.label Journal:
+    =< link_to @presenter.submission_event.journal, @presenter.submission_event.journal
+  p.mb-5x
+    = line_form_select_for(@presenter.submission_event, 'event_type', SubmissionEvent::EVENT_TYPES)
+  p.mb-5x
+    = line_form_select_for(@presenter.submission_event, 'event_subtype', SubmissionEvent::EVENT_SUBTYPES)
+  p.mb-5x
+    = line_form_date_for(@presenter.submission_event, 'date')

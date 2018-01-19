@@ -4,12 +4,8 @@
 
 p#notice = notice
 
-p
-  strong Article:
-  =< @presenter.submission.article
-p.mb-20x
-  strong Journal:
-  =< @presenter.submission.journal
+= line_form_association_for(@presenter.submission, 'article')
+.mb-20x= line_form_association_for(@presenter.submission, 'journal')
 
 p
   table

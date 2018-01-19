@@ -12,4 +12,5 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require alertify
 //= require_tree .

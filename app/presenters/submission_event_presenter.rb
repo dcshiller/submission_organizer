@@ -12,7 +12,7 @@ class SubmissionEventPresenter < ApplicationPresenter
   end
 
   def submission_events
-    user.events.
+    user.events.joins(:journal).
          order(params[:order] || 'submission_events.date DESC').
          paginate(per_page: 10, page: params[:page])
   end
@@ -21,6 +21,12 @@ class SubmissionEventPresenter < ApplicationPresenter
     order_sql = order_sql_from('articles.title', params[:order])
     directional = direction_from('articles.title', params[:order])
     link_to "Title #{directional}", submission_events_path(order: order_sql)
+  end
+
+  def journal_order_link
+    order_sql = order_sql_from('journals.title', params[:order])
+    directional = direction_from('journals.title', params[:order])
+    link_to "Journal #{directional}", submission_events_path(order: order_sql)
   end
 
   def type_order_link

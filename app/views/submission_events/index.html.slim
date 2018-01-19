@@ -8,10 +8,10 @@
 
 - if @presenter.submission_events.exists?
   .container style='max-width: 100%; min-height: 50%'
-    table
+    table.table
       thead
         th= @presenter.title_order_link
-        th= 'Journal'
+        th= @presenter.journal_order_link
         th= @presenter.type_order_link
         th= @presenter.subtype_order_link
         th= @presenter.date_order_link

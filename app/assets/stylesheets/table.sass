@@ -22,8 +22,8 @@ table
       cursor: pointer
   tbody.scrollbox
     max-height: 30vh
-    width: 100%
     overflow: scroll
+    width: 100%
   .title
     font-size: inherit
     font-weight: inherit
@@ -38,8 +38,8 @@ table
   td:not(:last-of-type)
     border-right: 1px solid tan
   a
-    text-decoration: none
     border-bottom: none
+    text-decoration: none
   [data-url]
     cursor: pointer
 
@@ -60,9 +60,9 @@ table
   border-left: 1px solid grey
   display: flex
   flex-direction: column
-  right: -20px
-  top: 50px
   position: absolute
+  right: -16px
+  top: 40px
   .next_page, .previous_page
     display: none
   a, em
@@ -71,10 +71,10 @@ table
     transform: translate(-2.5px)
     border:
       bottom: 1px solid grey
-      top: 1px solid grey
-      right: 2px solid grey
-      top-right-radius: 5px
       bottom-right-radius: 5px
+      right: 2px solid grey
+      top: 1px solid grey
+      top-right-radius: 5px
   em
     background: white
     border-left: 3px solid white
@@ -96,6 +96,7 @@ table
     padding: 0
   input
     border: none
+    border-radius: 0
     box-shadow: none
     margin: 0
   input[type='submit']
