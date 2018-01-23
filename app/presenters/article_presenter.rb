@@ -24,6 +24,6 @@ class ArticlePresenter < ApplicationPresenter
   def latest_activity_link
     order_sql = order_sql_from('latest_article_events_by_users.latest_date', params[:order])
     directional = direction_from('latest_article_events_by_users.latest_date', params[:order])
-    link_to "Updated #{directional}", articles_path(order: order_sql)
+    link_to "Latest #{directional}", articles_path(order: order_sql)
   end
 end

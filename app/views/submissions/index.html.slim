@@ -3,18 +3,20 @@
 =render 'partials/title', title: 'Submissions'
 
 - if @presenter.submissions.exists?
-  .container style='max-width: 100%; min-height: 50%'
+  .container style='max-width: 90%;'
     table.table.mb-20x
       thead
         tr
           th= @presenter.title_order_link
           th= @presenter.journal_order_link
+          th Initial
           th= @presenter.activity_order_link
       tbody
         - @presenter.submissions.each do |submission|
           tr data-url=submission_path(submission)
             td = submission.article
             td = submission.journal
+            td = submission.events.first.date
             td = submission.events.last.date
     div= will_paginate(@presenter.submissions, inner_window: 2, previous_label: nil, next_label: nil)
 

@@ -11,10 +11,12 @@
     button.querySelector('i').innerText = 'save';
     button.querySelector('i').classList.add('bounceIn');
     button.querySelector('i').classList.add('animated');
+    row.classList.add('fadeIn');
+    row.classList.add('animated');
   }
 
   function saveForm(button, row){
-    id = el.getAttribute('data-target');
+    id = button.getAttribute('data-target');
     row.querySelectorAll('td').forEach( function(nextEl) {nextEl.classList.add('hidden'); } );
     button.setAttribute('data-mode', 'add');
     form = document.querySelector('form[data-form-id=' + id + ']');

@@ -4,8 +4,9 @@
 
 p#notice = notice
 
-= line_form_association_for(@presenter.submission, 'article')
-.mb-20x= line_form_association_for(@presenter.submission, 'journal')
+.edit_form_list
+  = line_form_association_for(@presenter.submission, 'article')
+  .mb-20x= line_form_association_for(@presenter.submission, 'journal')
 
 p
   table

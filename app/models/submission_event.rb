@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: submission_events
+#
+#  id            :integer          not null, primary key
+#  submission_id :integer
+#  event_type    :string
+#  event_subtype :string
+#  date          :date
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class SubmissionEvent < ApplicationRecord
   belongs_to :submission
   has_one :article, through: :submission

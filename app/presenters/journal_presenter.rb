@@ -29,7 +29,7 @@ class JournalPresenter < ApplicationPresenter
   def activity_order_link
     order_sql = order_sql_from('latest_journal_events_by_users.latest_date', params[:order])
     directional = direction_from('latest_journal_events_by_users.latest_date', params[:order])
-    link_to "Updated #{directional}", journals_path(order: order_sql)
+    link_to "Latest #{directional}", journals_path(order: order_sql)
   end
 
 end

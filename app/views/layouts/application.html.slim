@@ -19,3 +19,10 @@ html
             = link_to yield(:back_link_path), class: 'back_link' do
               i.material-icons keyboard_arrow_left
           = yield
+
+  - if flash.now[:alert]
+    javascript:
+      alertify.error("#{flash.now[:alert]}")
+  - if flash[:notice]
+    javascript:
+      alertify.success("#{flash.now[:notice]}")

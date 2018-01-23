@@ -18,6 +18,12 @@
             .row
               = link_to journal, journal
 .tile.is-ancestor
+  .tile.is-parent data-url=submissions_path data-click-type='click'
+    .tile.is-child.box.notification.is-danger
+      .title.is-5.mb-10x.t-center Submissions
+      .column.link_list
+        - @presenter.submissions.each do |submission|
+          .row= link_to submission.article, submission
   .tile.is-parent data-url=submission_events_path data-click-type='click'
     .tile.is-child.box.notification.is-warning
       .title.is-5.mb-10x.t-center Events
@@ -27,6 +33,5 @@
             - @presenter.submission_events.each do |event|
               tr data-url=submission_event_url(event)
                 td= event.article
-                td= event.event_type
                 td= event.event_subtype
                 td= event.date

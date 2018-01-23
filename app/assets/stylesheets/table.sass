@@ -1,4 +1,5 @@
 table
+  overflow: hidden
   table-layout: fixed
   width: 100%
   thead
@@ -88,6 +89,8 @@ table
 .form_row
   overflow-y: visible
   position: relative
+  &.animated
+    animation-duration: .4s
   &.even_spaced
     .control
       width: 20%
@@ -99,6 +102,11 @@ table
     border-radius: 0
     box-shadow: none
     margin: 0
+  select
+    border-radius: 0
+    box-shadow: none
+    border: none
+    border-right: 1px solid lightgrey
   input[type='submit']
     left: 0
     position: relative

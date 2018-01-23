@@ -16,4 +16,13 @@ class UserPresenter < ApplicationPresenter
   def submission_events
     user.events.order(date: :desc).limit(5)
   end
+
+  def submissions
+    # debugger
+    # Article.from(user.articles.joins("submissions").select("articles.*"), :articles)
+    Submission.select("DISTINCT ON (latest_date, id) *").
+               from(user.articles.joins(:submissions).select("DISTINCT ON (articles.id) submissions.*"), :submissions).
+               joins(:latest_submission_events_by_submission).order('latest_date DESC').
+               limit(5)
+  end
 end

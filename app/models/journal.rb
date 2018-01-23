@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: journals
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Journal < ApplicationRecord
   validates :title, uniqueness: true, presence: true
 

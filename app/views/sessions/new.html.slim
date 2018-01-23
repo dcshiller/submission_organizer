@@ -2,8 +2,6 @@
 = render 'partials/title', title: 'Log In'
 
 p#alert
-  .row.center= alert
-
 = simple_form_for @presenter.user, url: sessions_path, method: 'POST' do |f|
   = f.input :email, wrapper_html: { class: 'column' }
   = f.input :password, wrapper_html: { class: 'column' }

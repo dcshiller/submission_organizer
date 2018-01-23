@@ -1,18 +1,15 @@
 - content_for :back_link_path, articles_path
 
 - subtitle = capture do
-  span
+  span.row.center
     = @presenter.article.title
     = link_to article_path(@presenter.article), method: "DELETE", data: { confirm: 'Are you sure?' } do
-      .button.outline
-        i.material-icons delete
+      i.material-icons delete
 = render 'partials/title', title: 'Article', subtitle: subtitle
-
-p#notice.row.center = notice
 
 .level
   .level-item
-    .column
+    .column.edit_form_list
       = line_form(@presenter.article, 'Title')
 
 - if @presenter.article.submissions.exists?
