@@ -14,21 +14,47 @@ class SubmissionPresenter < ApplicationPresenter
          paginate(per_page: 10, page: params[:page])
   end
 
-  def title_order_link
-    order_sql = order_sql_from('articles.title', params[:order])
-    directional = direction_from('articles.title', params[:order])
-    link_to "Article #{directional}", submissions_path(order: order_sql)
+  def index_table
+    table = Table.new(params)
+    table.set_query(submissions)
+    table.set_columns(
+      [
+        {
+          name: 'Article',
+          value_accessor: ['article', 'title']
+        },
+        {
+          name: 'Journal',
+          value_accessor: ['journal', 'title']
+        },
+        {
+          name: 'Date',
+          value_accessor: ['latest_submission_events_by_submission', 'latest_date']
+        }
+      ]
+    )
+    table
   end
 
-  def journal_order_link
-    order_sql = order_sql_from('journals.title', params[:order])
-    directional = direction_from('journals.title', params[:order])
-    link_to "Journal #{directional}", submissions_path(order: order_sql)
-  end
-
-  def activity_order_link
-    order_sql = order_sql_from('latest_submission_events_by_submissions.latest_date', params[:order])
-    directional = direction_from('latest_submission_events_by_submissions.latest_date', params[:order])
-    link_to "Date #{directional}", submissions_path(order: order_sql)
+  def show_table
+    table = Table.new(params)
+    table.set_query(submission.events.order(params[:order] || "date DESC"))
+    table.set_columns(
+      [
+        {
+          name: 'Type',
+          value_accessor: ['event_type']
+        },
+        {
+          name: 'Subtype',
+          value_accessor: ['event_subtype']
+        },
+        {
+          name: 'Date',
+          value_accessor: ['date']
+        }
+      ]
+    )
+    table
   end
 end

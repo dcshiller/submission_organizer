@@ -20,16 +20,62 @@ class JournalPresenter < ApplicationPresenter
     user.submissions.where(journal: journal)
   end
 
-  def title_order_link
-    order_sql = order_sql_from('journals.title', params[:order])
-    directional = direction_from('journals.title', params[:order])
-    link_to "Title #{directional}", journals_path(order: order_sql)
+  def index_row_form
+    row_form = RowForm.new(journal)
+    row_form.set_columns(
+      [
+        {
+          type: :input,
+          prop: :title,
+          placeholder: 'New Journal'
+        },
+        {
+          barred_out: true
+        }
+      ]
+    )
+    row_form
   end
 
-  def activity_order_link
-    order_sql = order_sql_from('latest_journal_events_by_users.latest_date', params[:order])
-    directional = direction_from('latest_journal_events_by_users.latest_date', params[:order])
-    link_to "Latest #{directional}", journals_path(order: order_sql)
+  def index_table
+    table = Table.new(params)
+    table.set_query(journals)
+    table.set_columns(
+      [
+        {
+          name: 'Title',
+          value_accessor: ['title']
+        },
+        {
+          name: 'Latest',
+          value_accessor: ['latest_journal_events_by_user', 'latest_date'],
+          width: '120px'
+        }
+      ]
+    )
+    table.set_row_form(index_row_form)
+    table
   end
 
+  def show_table
+    table = Table.new(params)
+    table.set_query(submissions.joins(:latest_submission_events_by_submission).order(params[:order]))
+    table.set_columns(
+      [
+        {
+          name: 'Title',
+          value_accessor: ['article']
+        },
+        {
+          name: 'Latest',
+          value_accessor: ['latest_submission_events_by_submission', 'latest_date']
+        },
+        {
+          name: 'Result',
+          value_accessor: ['latest_submission_events_by_submission', 'event_subtype']
+        }
+      ]
+    )
+    table
+  end
 end

@@ -13,20 +13,6 @@
       = line_form(@presenter.article, 'Title')
 
 - if @presenter.article.submissions.exists?
-  p.mb-5x
-    table
-      thead
-        tr
-          th Journal
-          th.t-center Dates
-          th Result
-      - @presenter.article.submissions.includes(:events).sort{ |s, t| t.events.map(&:date).max <=> s.events.map(&:date).max}.each do |s, i|
-        tr data-url=submission_url(s)
-          td= s
-          td
-            = s.events.order(:date).first.date
-            = ' - '
-            = s.last_event.date
-          td= s.last_event.event_subtype
+  = @presenter.show_table.draw_table
 - else
   .row.center: em No submissions yet

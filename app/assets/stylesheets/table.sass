@@ -62,20 +62,23 @@ table
   display: flex
   flex-direction: column
   position: absolute
-  right: -16px
+  right: -24px
+  min-width: 30px
   top: 40px
   .next_page, .previous_page
     display: none
   a, em
     margin: 1px
     padding: 2px
-    transform: translate(-2.5px)
+    transform: translate(-1.5px)
     border:
       bottom: 1px solid grey
       bottom-right-radius: 5px
       right: 2px solid grey
       top: 1px solid grey
       top-right-radius: 5px
+    &.current
+      transform: translate(-2.5px)
   em
     background: white
     border-left: 3px solid white

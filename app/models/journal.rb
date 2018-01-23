@@ -18,7 +18,7 @@ class Journal < ApplicationRecord
       joins(:article).where('articles.user_id = ?', user.id).order('submission_events.date DESC').limit(1)
     end
   end
-  has_many :latest_journal_events_by_user
+  has_one :latest_journal_events_by_user
   def to_s
     title
   end

@@ -3,7 +3,11 @@ class CreateSubmissionsView < ActiveRecord::Migration[5.1]
     execute <<-SQL
       CREATE VIEW latest_submission_events_by_submissions AS
         SELECT
-          DISTINCT ON (submissions.id) submissions.article_id AS article_id, submissions.id AS submission_id, submissions.journal_id AS journal_id, submission_events.date AS latest_date
+          DISTINCT ON (submissions.id) submissions.article_id AS article_id,
+                                       submissions.id AS submission_id,
+                                       submissions.journal_id AS journal_id,
+                                       submission_events.date AS latest_date,
+                                       submission_events.event_subtype AS event_subtype
         FROM
           submissions
         JOIN

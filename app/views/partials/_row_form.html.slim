@@ -1,0 +1,13 @@
+tr.form_row data-address=row_form.id
+  td.hidden
+    = simple_form_for row_form.ar_model, html: { data: { form_id: "'#{row_form.id}'" } } do |f|
+      - row_form.form_inputs(f).each do |inp|
+        = inp
+      
+    / = simple_form_for @presenter.journal, html: { data: { form_id: id } } do |f|
+    /   = f.input :title, label: false, placeholder: 'New Journal'
+  - row_form.barred_outs.times do
+    td.hidden.barred_out
+
+.left-button data-target=row_form.id data-mode='add'
+  i.material-icons add

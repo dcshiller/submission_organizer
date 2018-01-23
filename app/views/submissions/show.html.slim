@@ -8,23 +8,5 @@ p#notice = notice
   = line_form_association_for(@presenter.submission, 'article')
   .mb-20x= line_form_association_for(@presenter.submission, 'journal')
 
-p
-  table
-    thead
-      th Event Type
-      th Event Subtype
-      th Date
-    tbody
-      - @presenter.submission.events.order(date: :desc).each do |event|
-          tr
-            td= event.event_type
-            td= link_to event.event_subtype, event
-            td= event.date
+p= @presenter.show_table.draw_table
 .mb-10x
-
-/ .row.center
-/   = link_to 'New Event', new_submission_event_path(submission_event: { submission_id: @presenter.submission.id })
-/ .row.center
-/   = link_to 'Edit', edit_submission_path(@presenter.submission)
-/   '  |
-/   = link_to 'Back', submissions_path

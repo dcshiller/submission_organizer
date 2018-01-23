@@ -1,7 +1,11 @@
 = render 'partials/title', title: 'Edit Account'
+/ 
+/ = simple_form_for @presenter.user, method: 'PATCH', url: user_path(current_user) do |f|
+/   = f.input :name, wrapper_html: { class: 'column' }
+/   = f.input :email, wrapper_html: { class: 'column' }
+/   .row.space-around
+/     = f.button :submit, 'Update', class: 'is-primary', wrapper_html: { class: 'column' }
 
-= simple_form_for @presenter.user, method: 'PATCH', url: user_path(current_user) do |f|
-  = f.input :name, wrapper_html: { class: 'column' }
-  = f.input :email, wrapper_html: { class: 'column' }
-  .row.space-around
-    = f.button :submit, 'Update', class: 'is-primary', wrapper_html: { class: 'column' }
+.column.edit_form_list
+  = line_form(@presenter.user, 'name')
+  = line_form(@presenter.user, 'email')

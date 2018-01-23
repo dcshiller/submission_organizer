@@ -33,7 +33,10 @@ class SessionsController < ApplicationController
   end
 
   def user
-    @user ||= User.find_or_initialize_by(email: params[:user]&.dig(:email))
+    @user ||= (
+                User.where('email ILIKE ?', params[:user]&.dig(:email)).first ||
+                User.new
+              )
   end
 
   def password_match?

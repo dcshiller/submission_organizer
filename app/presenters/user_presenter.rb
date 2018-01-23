@@ -18,7 +18,6 @@ class UserPresenter < ApplicationPresenter
   end
 
   def submissions
-    # debugger
     # Article.from(user.articles.joins("submissions").select("articles.*"), :articles)
     Submission.select("DISTINCT ON (latest_date, id) *").
                from(user.articles.joins(:submissions).select("DISTINCT ON (articles.id) submissions.*"), :submissions).

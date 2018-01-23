@@ -40,12 +40,19 @@ form
 .toggle_form
   cursor: pointer
 
+#edit_user_1
+  input, .input_wrapper
+    margin-bottom: 0px
+
 form.line_form
   margin-bottom: 0px
   .button
     border: none
     height: auto
     padding: 0
+    &.hidden
+      display: block
+      visibility: hidden
   .row .input_wrapper, .row .input_wrapper input, .row .input_wrapper select
     border: none
     box-shadow: inherit
@@ -57,7 +64,9 @@ form.line_form
     flex-grow: 1
   .row .input_wrapper input, .row .input_wrapper select
     background: lightgoldenrodyellow
+    border: 1px solid darken(lightgoldenrodyellow, 10%)
     &[disabled]
+      border: 1px solid rgba(0,0,0,0)
       background: none
       cursor: inherit
   .row .control
