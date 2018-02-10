@@ -12,12 +12,6 @@
     div= will_paginate(@presenter.submission_events, inner_window: 2, previous_label: nil, next_label: nil)
   / .container style='max-width: 90%;'
   /   table.table
-  /     thead
-  /       th= @presenter.title_order_link
-  /       th= @presenter.journal_order_link
-  /       th= @presenter.type_order_link
-  /       th= @presenter.subtype_order_link
-  /       th= @presenter.date_order_link
   /     tbody
   /       tr.form_row.even_spaced data-address=id
   /         td.hidden colspan=5 = simple_form_for @presenter.submission_event, html: { data: { form_id: id } } do |f|

@@ -14,6 +14,31 @@ class SubmissionPresenter < ApplicationPresenter
          paginate(per_page: 10, page: params[:page])
   end
 
+  def index_row_form
+    row_form = RowForm.new(submission)
+    row_form.set_columns(
+      [
+        {
+          type: :input,
+          prop: :article,
+          collection: user.articles,
+          placeholder: 'Article',
+          width: '200px'
+        },
+        {
+          type: :input,
+          prop: :journal,
+          collection: Journal.all,
+          placeholder: 'Journal'
+        },
+        {
+          barred_out: true
+        }
+      ]
+    )
+    row_form
+  end
+
   def index_table
     table = Table.new(params)
     table.set_query(submissions)
@@ -21,7 +46,8 @@ class SubmissionPresenter < ApplicationPresenter
       [
         {
           name: 'Article',
-          value_accessor: ['article', 'title']
+          value_accessor: ['article', 'title'],
+          width: '199px'
         },
         {
           name: 'Journal',
@@ -33,6 +59,7 @@ class SubmissionPresenter < ApplicationPresenter
         }
       ]
     )
+    table.set_row_form(index_row_form)
     table
   end
 

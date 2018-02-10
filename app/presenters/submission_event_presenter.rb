@@ -16,36 +16,47 @@ class SubmissionEventPresenter < ApplicationPresenter
          order(params[:order] || 'submission_events.date DESC').
          paginate(per_page: 10, page: params[:page])
   end
-  # 
-  # def title_order_link
-  #   order_sql = order_sql_from('articles.title', params[:order])
-  #   directional = direction_from('articles.title', params[:order])
-  #   link_to "Title #{directional}", submission_events_path(order: order_sql)
-  # end
-  # 
-  # def journal_order_link
-  #   order_sql = order_sql_from('journals.title', params[:order])
-  #   directional = direction_from('journals.title', params[:order])
-  #   link_to "Journal #{directional}", submission_events_path(order: order_sql)
-  # end
-  # 
-  # def type_order_link
-  #   order_sql = order_sql_from('submission_events.event_type', params[:order])
-  #   directional = direction_from('submission_events.event_type', params[:order])
-  #   link_to "Type #{directional}", submission_events_path(order: order_sql)
-  # end
-  # 
-  # def subtype_order_link
-  #   order_sql = order_sql_from('submission_events.event_subtype', params[:order])
-  #   directional = direction_from('submission_events.event_subtype', params[:order])
-  #   link_to "Subtype #{directional}", submission_events_path(order: order_sql)
-  # end
-  # 
-  # def date_order_link
-  #   order_sql = order_sql_from('submission_events.date', params[:order])
-  #   directional = direction_from('submission_events.date', params[:order])
-  #   link_to "Date #{directional}", submission_events_path(order: order_sql)
-  # end
+
+  def index_row_form
+    row_form = RowForm.new(submission_event)
+    row_form.set_columns(
+      [
+        {
+          type: :input,
+          prop: :article,
+          collection: user.articles,
+          placeholder: 'Article',
+        },
+        {
+          type: :input,
+          prop: :journal,
+          collection: Journal.all,
+          placeholder: 'Journal',
+          width: '200px'
+        },
+        {
+          type: :input,
+          prop: :event_type,
+          placeholder: 'Event Type',
+          width: '100px'
+        },
+        {
+          type: :input,
+          prop: :event_subtype,
+          placeholder: 'Event Subtype',
+          width: '100px'
+        },
+        {
+          type: :input,
+          prop: :date,
+          as: :textfield,
+          placeholder: 'Date',
+          width: '100px'
+        }
+      ]
+    )
+    row_form
+  end
 
   def index_table
     table = Table.new(params)
@@ -58,22 +69,27 @@ class SubmissionEventPresenter < ApplicationPresenter
         },
         {
           name: 'Journal',
-          value_accessor: ['journal', 'title']
+          value_accessor: ['journal', 'title'],
+          width: '200px'
         },
         {
           name: 'Type',
-          value_accessor: ['event_type']
+          value_accessor: ['event_type'],
+          width: '100px'
         },
         {
           name: 'Subtype',
-          value_accessor: ['event_subtype']
+          value_accessor: ['event_subtype'],
+          width: '100px'
         },
         {
           name: 'Date',
-          value_accessor: ['date']
+          value_accessor: ['date'],
+          width: '100px'
         }
       ]
     )
+    table.set_row_form index_row_form
     table
   end
 

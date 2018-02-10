@@ -17,7 +17,12 @@ class RowForm
 
   def form_inputs(f)
     inputs.map do |column|
-      f.send(column[:type], column[:prop], label: false, placeholder: column[:placeholder])
+      f.send(column[:type], column[:prop], collection: column[:collection],
+                                           label: false,
+                                           wrapper: false,
+                                           as: column[:as],
+                                           input_html: { style: "width: #{column[:width]};"},
+                                           placeholder: column[:placeholder])
     end
   end
 
