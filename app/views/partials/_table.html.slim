@@ -10,3 +10,8 @@ table.table
       tr data-url=send(table.object_path, model.id)
         - table.column_value_accessors.each do |cva|
           td= [cva].flatten.inject(model) { |accum, cva_part| accum.try(cva_part) }
+    - table.blank_rows.times do
+      tr.blank_row
+        - table.columns_count.times do 
+          td
+            .filler= ' '

@@ -1,9 +1,6 @@
 - content_for :back_link_path, articles_path
 
-- subtitle = capture do
-  span.row.center
-    = @presenter.article.title
-= render 'partials/title', title: 'Article', subtitle: subtitle
+= render 'partials/title', title: 'Article'
 
 .corner_button
   = link_to article_path(@presenter.article), method: "DELETE", data: { confirm: 'Are you sure?' } do

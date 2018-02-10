@@ -29,8 +29,16 @@ class Table
 
   # Getters
 
+  def blank_rows
+    params[:page] ? 10 - query.to_a.count : 0
+  end
+
   def column_names
     @columns.map { |c| c[:name] }
+  end
+
+  def columns_count
+    column_names.count
   end
 
   def column_value_accessors
