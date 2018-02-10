@@ -3,9 +3,11 @@
 - subtitle = capture do
   span.row.center
     = @presenter.article.title
-    = link_to article_path(@presenter.article), method: "DELETE", data: { confirm: 'Are you sure?' } do
-      i.material-icons delete
 = render 'partials/title', title: 'Article', subtitle: subtitle
+
+.corner_button
+  = link_to article_path(@presenter.article), method: "DELETE", data: { confirm: 'Are you sure?' } do
+    i.material-icons delete
 
 .level
   .level-item

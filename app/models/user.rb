@@ -13,7 +13,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  has_many :articles
+  has_many :articles, dependent: :destroy
   has_many :submissions, through: :articles
   has_many :events, through: :submissions, class_name: "SubmissionEvent"
 

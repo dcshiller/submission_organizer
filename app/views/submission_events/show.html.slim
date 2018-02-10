@@ -2,7 +2,11 @@
 
 = render 'partials/title', title: 'Event'
 
-p#notice = notice
+.corner_button
+  = link_to submission_event_path(@presenter.submission_event), method: "DELETE", data: { confirm: 'Are you sure?' } do
+    i.material-icons delete
+
+/ p#notice = notice
 
 .edit_form_list
   p.mb-5x.row
