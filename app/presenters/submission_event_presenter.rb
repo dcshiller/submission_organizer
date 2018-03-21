@@ -37,20 +37,18 @@ class SubmissionEventPresenter < ApplicationPresenter
         {
           type: :input,
           prop: :event_type,
-          placeholder: 'Event Type',
           width: '100px'
         },
         {
           type: :input,
           prop: :event_subtype,
-          placeholder: 'Event Subtype',
           width: '100px'
         },
         {
           type: :input,
           prop: :date,
-          as: :textfield,
-          placeholder: 'Date',
+          as: :string,
+          placeholder: 'YY-MM-DD',
           width: '100px'
         }
       ]

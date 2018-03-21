@@ -16,9 +16,10 @@ html
       .row.center
         .box style="max-width: #{content_for :max_width}"
           - if content_for?(:back_link_path)
-            = link_to yield(:back_link_path), class: 'back_link' do
-              = fa_icon "sitemap"
-              / i.material-icons keyboard_arrow_left
+            .back_link.column
+              = link_to yield(:back_link_path) do
+                = fa_icon "sitemap"
+              i.material-icons keyboard_arrow_left
           = yield
 
   - if flash.now[:alert]

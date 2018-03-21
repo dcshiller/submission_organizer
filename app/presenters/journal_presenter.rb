@@ -68,11 +68,13 @@ class JournalPresenter < ApplicationPresenter
         },
         {
           name: 'Latest',
-          value_accessor: ['latest_submission_events_by_submission', 'latest_date']
+          value_accessor: ['latest_submission_events_by_submission', 'latest_date'],
+          width: '120px'
         },
         {
           name: 'Result',
-          value_accessor: ['latest_submission_events_by_submission', 'event_subtype']
+          value_accessor: ['latest_submission_events_by_submission', 'event_subtype'],
+          width: '120px'
         }
       ]
     )

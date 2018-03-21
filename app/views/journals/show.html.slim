@@ -9,5 +9,7 @@ p#notice = notice
 
   .mb-40x
 - else
-  .row.center
-    = link_to 'Add a submission', new_submission_path(journal: @presenter.journal.id), class: 'button is-primary'
+  .mb-60x
+  .column.middle
+    .row.center
+      = link_to 'Add a submission', new_submission_path(journal: @presenter.journal.id), class: 'button is-primary'
