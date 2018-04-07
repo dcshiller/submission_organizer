@@ -10,15 +10,12 @@ class SessionsController < ApplicationController
 
   def create
     if password_match? then handle_login
-    else
-      flash["alert"] = "Invalid user name or password"
-      new
+    else flash_failed_password_alert and new 
     end
   end
 
   def destroy
-    session[:user_id] = nil
-    redirect_to new_session_path
+		handle_logout
   end
 
   private
@@ -31,8 +28,17 @@ class SessionsController < ApplicationController
     login_as user
     redirect_to root_path
   end
+	
+	def handle_logout
+    logout_user
+		redirect_to new_session_path
+	end
 
-  def user
+	def flash_failed_password_alert
+		flash['alert'] = 'Invalid user name or password'
+	end
+					
+	def user
     @user ||= (
                 User.where('email ILIKE ?', params[:user]&.dig(:email)).first ||
                 User.new
