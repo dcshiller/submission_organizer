@@ -20,7 +20,7 @@ one:
   id: 1
   name: 'Bobby B'
   email: 'test@test.com'
-  password_digest: '<%= BCrypt::Password.create('testpassword') %>'
+  password_digest: '<%= BCrypt::Password.create("testpassword") %>'
 
 two:
   id: 2

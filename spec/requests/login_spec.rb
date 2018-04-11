@@ -6,10 +6,16 @@ RSpec.describe "Logging In", :type => :request do
   it "logs in with good password" do
     post "/sessions", params: { user: {  email: 'test@test.com', password: 'testpassword' } }
     expect(response.status).to be(302)
- 		assert_redirected_to user_path(User.find_by_email('test@test.com'))
+ 		assert_redirected_to root_path
   end
 
-  it "does not login without good password" do
+  it "logs in with good password and capitalized email" do
+    post "/sessions", params: { user: {  email: 'tEsT@test.com', password: 'testpassword' } }
+    expect(response.status).to be(302)
+ 		assert_redirected_to root_path
+  end
+  
+	it "does not login without good password" do
     post "/sessions", params: { user: {  email: 'test@test.com', password: 'fakepassword' } }
     expect(response.status).to be(200)
  	end

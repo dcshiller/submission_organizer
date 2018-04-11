@@ -11,10 +11,12 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: 1
-  title: MyString
+third_dogma:
+  id: 1
+  user_id: 1
+  title: 'A third dogma of empiricism?'
 
-two:
-  user: 2
-  title: MyString
+everything:
+  id: 2
+  user_id: 2
+  title: 'Everything you ever wanted to know about Consequentialism but were afraid to ask'
