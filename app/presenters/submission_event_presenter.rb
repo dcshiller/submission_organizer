@@ -26,7 +26,8 @@ class SubmissionEventPresenter < ApplicationPresenter
           prop: :article,
           collection: user.articles,
           placeholder: 'Article',
-        },
+				  width: '150%'
+				},
         {
           type: :input,
           prop: :journal,
@@ -48,7 +49,7 @@ class SubmissionEventPresenter < ApplicationPresenter
           type: :input,
           prop: :date,
           as: :string,
-          placeholder: 'YY-MM-DD',
+          placeholder: 'Y-M-D',
           width: '100px'
         }
       ]

@@ -1,5 +1,5 @@
 tr.form_row data-address=row_form.id
-  td.hidden colspan=row_form.inputs.count
+  td.hidden colspan=row_form.input_width
     = simple_form_for row_form.ar_model, html: { data: { form_id: "'#{row_form.id}'" } } do |f|
       .row
         - row_form.form_inputs(f).each do |inp|

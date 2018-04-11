@@ -30,6 +30,10 @@ class RowForm
     @columns.select { |c| !c[:barred_out] }
   end
 
+	def input_width
+		inputs.count
+	end
+
   def set_columns(input_columns)
     @columns = input_columns
   end
