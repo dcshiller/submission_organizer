@@ -55,3 +55,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+def login_as(user)
+  post "/sessions", params: { user: { email: user.email, password: 'testpassword' } }
+end
