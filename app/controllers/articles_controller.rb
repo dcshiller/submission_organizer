@@ -1,12 +1,15 @@
 class ArticlesController < ApplicationController
+  attr_reader :article
+  before_action :set_article
   before_action :init_presenter
 
   def index; end
-  def show; end
   def new; end
-  def edit; end
+  def show;     authorize article end
+  def edit;     authorize article end
 
   def create
+    authorize article
     respond_to do |format|
       if @presenter.article.save
         format.html { redirect_to articles_path, notice: 'Article was successfully created.' }
@@ -19,6 +22,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    authorize article
     respond_to do |format|
       if @presenter.article.update(article_params)
         format.html { redirect_to @presenter.article, notice: 'Article was successfully updated.' }
@@ -31,6 +35,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    authorize article
     @presenter.article.destroy
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
@@ -41,7 +46,6 @@ class ArticlesController < ApplicationController
 private
 
   def init_presenter
-    set_article
     @presenter = ArticlePresenter.new(current_user, @article, params)
   end
 

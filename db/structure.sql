@@ -164,7 +164,8 @@ CREATE VIEW public.latest_submission_events_by_submissions AS
  SELECT DISTINCT ON (submissions.id) submissions.article_id,
     submissions.id AS submission_id,
     submissions.journal_id,
-    submission_events.date AS latest_date
+    submission_events.date AS latest_date,
+    submission_events.event_subtype
    FROM (public.submissions
      JOIN public.submission_events ON ((submissions.id = submission_events.submission_id)))
   ORDER BY submissions.id, submission_events.date DESC;

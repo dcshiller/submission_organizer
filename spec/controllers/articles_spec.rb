@@ -18,6 +18,10 @@ RSpec.describe ArticlesController, type: 'request' do
 		assert_response 200
 		expect(response.body).to include(articles(:third_dogma).title)
 	end
+	
+  it 'doesnt get show page for other users article' do
+		expect{ get '/articles/2' }.to raise_error
+	end
 
 	it 'gets new page' do
 		get '/articles/new'
@@ -30,7 +34,11 @@ RSpec.describe ArticlesController, type: 'request' do
 		expect(response.body).to include(articles(:third_dogma).title)
 	end
 
-	it 'makes edits' do	
+  it 'doesnt get edit page for other users article' do
+		expect{ get '/articles/2/edit' }.to raise_error
+	end
+
+  it 'makes edits' do	
 		patch '/articles/1', params: { article: { title: 'More than two dogmas' } }
 		assert_response 302
 		expect(articles(:third_dogma).reload.title).to eq('More than two dogmas')
