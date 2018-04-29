@@ -1,14 +1,16 @@
 class SubmissionEventsController < ApplicationController
+  attr_reader :submission_event
+  before_action :set_submission_event
   before_action :init_presenter
 
   def index; end
-  def show; end
+  def show; authorize submission_event  end
 
   def new
     render :new
   end
 
-  def edit; end
+  def edit; authorize submission_event end
 
   def create
     if submission_event_params_are_valid? then save_submission_event and redirect_to submission_events_path
@@ -17,21 +19,30 @@ class SubmissionEventsController < ApplicationController
   end
 
   def update
+    authorize submission_event
+    if submission_event_params_are_valid? 
+      submission_event.update(submission_event_params)
+      redirect_to submission_events_path
+    else new
+    end
   end
 
   private
 
   def init_presenter
-    set_submission_event
-    @presenter = SubmissionEventPresenter.new(current_user, @submission_event, params)
+    @presenter = SubmissionEventPresenter.new(current_user, submission_event, params)
   end
 
   def submission_event_params_are_valid?
-    @presenter.submission_event.valid?
+    submission_event.valid?
   end
 
   def set_submission_event
     @submission_event = SubmissionEvent.find_by(id: params[:id]) || SubmissionEvent.new(submission_params_with_submission)
+  end
+
+  def submission_event_params
+    params.require(:submission_event).permit(SubmissionEvent::USER_EDITABLE_ATTRS)
   end
 
   def submission_params_with_submission
@@ -45,7 +56,7 @@ class SubmissionEventsController < ApplicationController
   end
 
   def save_submission_event
-    if @presenter.submission_event.save
+    if submission_event.save
       flash[:notice] = "New Event Created!"
     end
   end

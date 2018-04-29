@@ -16,9 +16,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize user_from_params
   end
 
   def update
+    authorize user_from_params 
     if current_user.update(user_params)
       redirect_to root_path
     else render :edit
@@ -42,7 +44,7 @@ private
   end
 
   def user_from_params
-    @_user ||= User.new(user_params)
+    @_user ||= User.find_by(id: params[:id]) || User.new(user_params)
   end
 
   def user_params_are_valid?

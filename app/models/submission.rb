@@ -11,6 +11,7 @@
 
 class Submission < ApplicationRecord
   belongs_to :article
+  has_one :user, through: :article
   belongs_to :journal
   has_many :events, class_name: 'SubmissionEvent', dependent: :destroy
   has_one :last_event, -> { distinct.order('date DESC') }, class_name: 'SubmissionEvent'

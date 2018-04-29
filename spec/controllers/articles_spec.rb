@@ -20,7 +20,7 @@ RSpec.describe ArticlesController, type: 'request' do
 	end
 	
   it 'doesnt get show page for other users article' do
-		expect{ get '/articles/2' }.to raise_error
+		expect{ get '/articles/2' }.to raise_error(Pundit::NotAuthorizedError)
 	end
 
 	it 'gets new page' do
@@ -35,7 +35,7 @@ RSpec.describe ArticlesController, type: 'request' do
 	end
 
   it 'doesnt get edit page for other users article' do
-		expect{ get '/articles/2/edit' }.to raise_error
+		expect{ get '/articles/2/edit' }.to raise_error(Pundit::NotAuthorizedError)
 	end
 
   it 'makes edits' do	

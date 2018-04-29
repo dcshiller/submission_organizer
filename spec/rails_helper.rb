@@ -59,3 +59,6 @@ end
 def login_as(user)
   post "/sessions", params: { user: { email: user.email, password: 'testpassword' } }
 end
+def logout
+  post "/sessions", params: { method: :destroy }
+end

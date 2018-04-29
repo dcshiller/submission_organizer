@@ -13,10 +13,12 @@
 
 one:
   id: 1
-  article_id: 1
-  journal_id: 1
+  submission_id: 1
+  event_type: 'submission'
+  event_subtype: 'initial'
 
 two:
   id: 2
-  article_id: 2
-  journal_id: 2
+  submission_id: 2
+  event_type: 'decision'
+  event_subtype: 'acceptance'

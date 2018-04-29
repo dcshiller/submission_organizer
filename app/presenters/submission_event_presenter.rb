@@ -93,6 +93,6 @@ class SubmissionEventPresenter < ApplicationPresenter
   end
 
   def submission_article
-    submission_event.submission.article
+    submission_event.submission&.article
   end
 end
