@@ -39,8 +39,14 @@ RSpec.describe SubmissionEventsController, type: 'request' do
 	end
 
   it 'makes edits' do	
-		put '/submission_events/1', params: { submission_event: { event_type: 'decision' } }
+		put '/submission_events/1', params: { 
+                                          submission_event: { 
+                                              event_type: 'decision',
+                                              event_subtype: 'acceptance'
+                                          }
+                                        }
 		assert_response 302
 		expect(submission_events(:one).reload.event_type).to eq('decision')
+		expect(submission_events(:one).event_subtype).to eq('acceptance')
 	end	
 end
