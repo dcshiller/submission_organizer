@@ -15,3 +15,4 @@
   = @presenter.show_table.draw_table
 - else
   .row.center: em No submissions yet
+  .row.center= link_to 'create one', new_submission_path(submission: { article_id: @presenter.article })

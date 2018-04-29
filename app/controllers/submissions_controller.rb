@@ -52,10 +52,10 @@ class SubmissionsController < ApplicationController
   end
 
   def set_submission
-    @submission = Submission.find_by(id: params[:id]) || Submission.new
+    @submission = Submission.find_by(id: params[:id]) || Submission.new(submission_params)
   end
 
   def submission_params
-    params.require(:submission).permit(:article_id, :journal_id)
+    params.permit(submission: [:article_id, :journal_id])[:submission]
   end
 end

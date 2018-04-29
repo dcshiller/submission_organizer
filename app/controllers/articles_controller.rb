@@ -9,7 +9,6 @@ class ArticlesController < ApplicationController
   def edit;     authorize article end
 
   def create
-    authorize article
     respond_to do |format|
       if @presenter.article.save
         format.html { redirect_to articles_path, notice: 'Article was successfully created.' }
