@@ -19,7 +19,7 @@
     id = button.getAttribute('data-target');
     row.querySelectorAll('td').forEach( function(nextEl) {nextEl.classList.add('hidden'); } );
     button.setAttribute('data-mode', 'add');
-    form = document.querySelector('form[data-form-id=' + id + ']');
+    form = document.querySelector('form[data-form-id=\'' + id + '\']');
     form.submit();
     button.querySelector('i').innerText = 'add';
   }

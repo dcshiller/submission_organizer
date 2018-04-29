@@ -20,14 +20,14 @@ class SubmissionPresenter < ApplicationPresenter
       [
         {
           type: :input,
-          prop: :article,
+          prop: :article_id,
           collection: user.articles,
           placeholder: 'Article',
           width: '200px'
         },
         {
           type: :input,
-          prop: :journal,
+          prop: :journal_id,
           collection: Journal.all,
           placeholder: 'Journal'
         },
