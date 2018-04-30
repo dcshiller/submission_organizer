@@ -6,7 +6,7 @@ class UserPresenter < ApplicationPresenter
   end
 
   def articles
-    user.articles.limit(5)
+    Article.not_accepted.where(id: user.articles.submitted).order('articles.created_at DESC').limit(5)
   end
 
   def journals

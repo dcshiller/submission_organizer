@@ -10,8 +10,8 @@ class ArticlePresenter < ApplicationPresenter
 
   def articles
     user.articles.
-         includes(:latest_article_events_by_user).
-         order(params[:order] || 'articles.title').
+         joins(:latest_article_events_by_user). # includes not working with order
+         order(params[:order] || 'latest_article_events_by_users.latest_date DESC').
          paginate(per_page: 10, page: params[:page])
   end
 

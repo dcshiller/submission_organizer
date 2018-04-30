@@ -46,7 +46,7 @@ class SubmissionEventsController < ApplicationController
   end
 
   def submission_params_with_submission
-    if submission_params
+    if submission_params && !submission_params[:submission_id]
       submission_params[:submission] =
         current_user.submissions.find_or_initialize_by(article_id: submission_params[:article], journal_id: submission_params[:journal])
         submission_params.delete :article

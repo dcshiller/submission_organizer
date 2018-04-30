@@ -5,6 +5,10 @@ class Article < ApplicationRecord
   has_many :journals, through: :submissions
   has_one :latest_article_events_by_user
 
+  scope :submitted,  -> { distinct.joins(:submissions) }
+  scope :not_accepted, -> { distinct.left_outer_joins(submissions: :events).
+                                     where.not(submission_events: { event_subtype: 'acceptance' }) }
+
   def to_s
     title
   end

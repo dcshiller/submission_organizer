@@ -2,12 +2,15 @@
 
 = render 'partials/title', title: 'Submission'
 .corner_button
-  = link_to submission_path(@presenter.submission), method: "DELETE", data: { confirm: 'Are you sure?' } do
+  = link_to submission_path(@presenter.submission), method: 'DELETE', data: { confirm: 'Are you sure?' } do
     i.material-icons delete
 
 .edit_form_list
   = line_form_association_for(@presenter.submission, 'article')
   .mb-20x= line_form_association_for(@presenter.submission, 'journal')
 
-p= @presenter.show_table.draw_table
+.container style='max-width: 90%' = @presenter.show_table.draw_table
 .mb-10x
+
+p= link_to 'new event', new_submission_event_path(submission: @presenter.submission.id)
+

@@ -63,6 +63,37 @@ class SubmissionPresenter < ApplicationPresenter
     table
   end
 
+  def show_row_form
+    row_form = RowForm.new(submission.events.new)
+    row_form.set_columns(
+      [
+        {
+          type: :input,
+          as: :hidden,
+          prop: :submission_id,
+          width: '0px'
+        },
+        {
+          type: :input,
+          prop: :event_type,
+          width: '200px'
+        },
+        {
+          type: :input,
+          prop: :event_subtype,
+          width: '200px'
+        },
+        {
+          type: :input,
+          prop: :date,
+          as: :string,
+          placeholder: 'Y-M-D',
+        }
+      ]
+    )
+    row_form
+  end
+
   def show_table
     table = Table.new(params)
     table.set_query(submission.events.order(params[:order] || "date DESC"))
@@ -70,18 +101,22 @@ class SubmissionPresenter < ApplicationPresenter
       [
         {
           name: 'Type',
-          value_accessor: ['event_type']
+          value_accessor: ['event_type'],
+          width: '200px'
         },
         {
           name: 'Subtype',
-          value_accessor: ['event_subtype']
+          value_accessor: ['event_subtype'],
+          width: '200px'
         },
         {
           name: 'Date',
-          value_accessor: ['date']
+          value_accessor: ['date'],
+          width: '100%'
         }
       ]
     )
+    table.set_row_form(show_row_form)
     table
   end
 end
