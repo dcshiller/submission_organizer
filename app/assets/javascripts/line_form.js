@@ -1,4 +1,3 @@
-
 window.lineFormController = {
   toggleForms: function(){
     return document.querySelectorAll('.toggle_form');

@@ -15,6 +15,8 @@ gem 'slim-rails'
 gem 'pry-rails'
 gem 'simple_form'
 gem 'bcrypt'
+gem 'carrierwave'
+gem 'fog-aws'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'pg', '~> 0.18'
@@ -50,6 +52,7 @@ gem 'pundit'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'

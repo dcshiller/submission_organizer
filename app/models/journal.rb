@@ -19,6 +19,9 @@ class Journal < ApplicationRecord
     end
   end
   has_one :latest_journal_events_by_user
+
+  scope :alphabetical, -> { order(title: :asc) } 
+ 
   def to_s
     title
   end

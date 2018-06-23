@@ -6,17 +6,42 @@
   = link_to submission_event_path(@presenter.submission_event), method: "DELETE", data: { confirm: 'Are you sure?' } do
     i.material-icons delete
 
-.edit_form_list
-  p.mb-5x.row
-    strong.label Article:
-    =< link_to @presenter.submission_event.article, @presenter.submission_event.article
-  p.mb-5x.row
-    strong.label Journal:
-    =< link_to @presenter.submission_event.journal, @presenter.submission_event.journal
-  p.mb-5x
-    = line_form_select_for(@presenter.submission_event, 'event_type', SubmissionEvent::EVENT_TYPES)
-  p.mb-5x
-    = line_form_select_for(@presenter.submission_event, 'event_subtype', SubmissionEvent::EVENT_SUBTYPES)
-  p.mb-5x
-    = line_form_date_for(@presenter.submission_event, 'date')
+- edit_pane = capture do
+  .edit_form_list
+    p.mb-5x.row
+      strong.label Article:
+      =< link_to @presenter.submission_event.article, @presenter.submission_event.article
+    p.mb-5x.row
+      strong.label Journal:
+      =< link_to @presenter.submission_event.journal, @presenter.submission_event.journal
+    p.mb-5x
+      = line_form_select_for(@presenter.submission_event, 'event_type', SubmissionEvent::EVENT_TYPES)
+    p.mb-5x
+      = line_form_select_for(@presenter.submission_event, 'event_subtype', SubmissionEvent::EVENT_SUBTYPES)
+    p.mb-5x
+      = line_form_date_for(@presenter.submission_event, 'date')
+
+- document_pane = capture do
+  table.doc_table
+    - @presenter.submission_event.documents.each do |doc|
+      tr
+        td.row
+          .inline-block style="display: inline-block"
+            .row= line_form(doc, 'name')
+          = link_to doc.file.url do
+            i.material-icons insert_drive_file
+          = link_to doc.file.url do
+            i.material-icons delete
+
+  = simple_form_for @presenter.submission_event.documents.new do |f|
+    .row
+      = f.input :documentable_id, as: :hidden
+      = f.input :documentable_type, as: :hidden
+      = f.input :name, placeholder: 'document name', label: false
+    br
+    .row
+      = f.input :file, as: :file, label: false
+      = f.submit :upload, class: 'button is-primary'
+
+= render 'partials/tabbed_panes', panes: { info: edit_pane, docs: document_pane }
 

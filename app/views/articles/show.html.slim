@@ -12,7 +12,8 @@
       = line_form(@presenter.article, 'Title')
 
 - if @presenter.article.submissions.exists?
-  = @presenter.show_table.draw_table
+  .container style='max-width: 90%' = @presenter.show_table.draw_table
 - else
   .row.center: em No submissions yet
-  .row.center= link_to 'create one', new_submission_path(submission: { article_id: @presenter.article })
+  br
+  .row.center= link_to 'create one', new_submission_path(submission: { article_id: @presenter.article }), class: 'button is-primary'

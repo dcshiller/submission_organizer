@@ -10,7 +10,7 @@ class ArticlePresenter < ApplicationPresenter
 
   def articles
     user.articles.
-         joins(:latest_article_events_by_user). # includes not working with order
+         left_outer_joins(:latest_article_events_by_user). # includes not working with order
          order(params[:order] || 'latest_article_events_by_users.latest_date DESC').
          paginate(per_page: 10, page: params[:page])
   end
@@ -52,21 +52,50 @@ class ArticlePresenter < ApplicationPresenter
     table
   end
 
+  def show_row_form
+    row_form = RowForm.new(article.submissions.new)
+    row_form.set_columns(
+      [
+        {
+          type: :input_field,
+          as: :hidden,
+          prop: :article_id,
+          width: '0px'
+        },
+        {
+          type: :input,
+          prop: :journal_id,
+          collection: Journal.alphabetical,
+          placeholder: 'Journal',
+        },
+        {
+          barred_out: true,
+          width: '120px'
+        }
+      ]
+    )
+    row_form
+  end
+
   def show_table
     table = Table.new(params)
-    table.set_query(article.submissions.joins(:latest_submission_events_by_submission, :journal).order(params[:order]))
+    table.set_query(article.submissions.
+                            left_outer_joins(:latest_submission_events_by_submission, :journal).
+                            order(params[:order] || 'latest_submission_events_by_submissions DESC'))
     table.set_columns(
       [
         {
           name: 'Journal',
-          value_accessor: ['journal', 'title']
+          value_accessor: ['journal', 'title'],
         },
         {
           name: 'Latest',
-          value_accessor: ['latest_submission_events_by_submission', 'latest_date']
+          value_accessor: ['latest_submission_events_by_submission', 'latest_date'],
+          width:  '120px'
         }
       ]
     )
+    table.set_row_form(show_row_form)
     table
   end
 end

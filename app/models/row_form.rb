@@ -31,7 +31,7 @@ class RowForm
   end
 
 	def input_width
-		inputs.count
+		inputs.select { |i| i[:as] != :hidden }.count
 	end
 
   def set_columns(input_columns)
