@@ -1,7 +1,13 @@
+.table_container
+  max-width: 90%
+  z-index: 1
+
 table
+  background: white
   overflow: hidden
   table-layout: fixed
   width: 100%
+  z-index: 4
   thead
     border-bottom: 3px solid grey
   tbody
@@ -69,11 +75,14 @@ table
   right: -24px
   min-width: 30px
   top: 40px
+  z-index: -1
   .next_page, .previous_page
     display: none
   a, em
+    z-index: 0
     margin: 1px
     padding: 2px
+    padding-left: 20px
     transform: translate(-1.5px)
     border:
       bottom: 1px solid grey
@@ -82,7 +91,7 @@ table
       top: 1px solid grey
       top-right-radius: 5px
     &.current
-      transform: translate(-2.5px)
+      transform: translate(-4.5px)
   em
     background: white
     border-left: 3px solid white

@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   resources :documents, only: [:create, :show, :destroy]
   resources :sessions, only: [:new, :index, :create, :destroy]
-  get 'logout', controller: 'sessions', action: 'destroy'
+  get :about, controller: :pages, action: :about
+  get :logout, controller: :sessions, action: :destroy
   resources :journals
   resources :articles
   resources :submission_events

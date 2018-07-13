@@ -12,7 +12,7 @@
       = line_form(@presenter.article, 'Title')
 
 - if @presenter.article.submissions.exists?
-  .container style='max-width: 90%' = @presenter.show_table.draw_table
+  .container.table_container = @presenter.show_table.draw_table
 - else
   .row.center: em No submissions yet
   br

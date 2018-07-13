@@ -10,7 +10,7 @@
   .mb-20x= line_form_association_for(@presenter.submission, 'journal')
 
 - if @presenter.submission.events.exists?
-  .container style='max-width: 90%' = @presenter.show_table.draw_table
+  .container.table_container= @presenter.show_table.draw_table
   .mb-10x
 - else
   .row.center: em No events yet

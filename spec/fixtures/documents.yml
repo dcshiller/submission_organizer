@@ -1,0 +1,13 @@
+manuscript:
+  id: 1
+  file: "/test.pdf"
+  name: "manuscript.pdf"
+  documentable_id: 1
+  documentable_type: "SubmissionEvent"
+
+comments:
+  id: 2
+  file: "/test2.pdf"
+  name: "comments.pdf"
+  documentable_id: 2
+  documentable_type: "SubmissionEvent"

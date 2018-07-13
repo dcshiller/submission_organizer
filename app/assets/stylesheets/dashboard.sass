@@ -1,9 +1,31 @@
-#dashboard_tiles
+.dashboard_tile_row
+  display: flex
+  justify-content: space-around
   min-width: 500px
+
+.tile.is-parent
+  max-width: 45%
+
+.tile.is-child.notification
+  margin: 0 10px !important
+  max-width: 95%
+
+
 .tile.box:hover
   transform: scale(1.02)
   transition: .2s transform
 
 .link_list
+  max-height: 18vh
   text-overflow: ellipsis
   white-space: nowrap
+  a
+    max-width: 100%
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+
+.dashboard_events_table
+  tr td:first-of-type
+    max-width: 10vw
+    overflow: hidden

@@ -9,7 +9,7 @@
     button
       i.material-icons search
 
-.container style='max-width: 90%;'
+.container.table_container
   = @presenter.index_table.draw_table
   div= will_paginate(@presenter.index_table.query, inner_window: 2, previous_label: nil, next_label: nil)
 

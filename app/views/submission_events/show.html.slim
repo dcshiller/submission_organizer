@@ -28,7 +28,7 @@
         td.row
           .inline-block style="display: inline-block"
             .row= line_form(doc, 'name')
-          = link_to doc.file.url do
+          = link_to document_path(doc) do
             i.material-icons insert_drive_file
           = link_to document_path(doc), method: 'delete', data: { confirm: 'Are you sure?' }
             i.material-icons delete
