@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'bcrypt'
 gem 'carrierwave'
 gem 'fog-aws'
+gem 'sendgrid-ruby'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'pg', '~> 0.18'

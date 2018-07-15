@@ -24,4 +24,8 @@ class User < ApplicationRecord
   def to_s
     name
   end
+
+  def set_reset_token!
+    update(reset_token: SecureRandom.base64(10))
+  end
 end

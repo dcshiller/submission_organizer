@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   resources :articles
   resources :submission_events
 
+  resources :passwords, only: [:new, :create]
+  get :forgot, controller: :passwords, action: :forgot
+  get :reset_password, controller: :passwords, action: :reset
+
   resources :users, only: [:new, :create, :edit, :update] do
     scope module: :users do
       resources :assignments, only: [:index, :show]

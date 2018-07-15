@@ -1,0 +1,11 @@
+= render "partials/title", title: "Reset Password"
+
+.column.middle
+  p.paragraph Enter your account's email address to receive an email with a password reset link.
+  br
+  .row.center
+    = form_tag reset_password_path, method: 'get', class: 'search_bar' do
+      = email_field_tag :email, "", required: true, class: 'search_bar', minLength: 5, pattern: /....../
+      button
+        i.material-icons mail
+

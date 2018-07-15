@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize user_from_params 
+    authorize user_from_params
     if current_user.update(user_params)
       redirect_to root_path
     else render :edit
