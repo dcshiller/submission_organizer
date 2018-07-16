@@ -2,9 +2,9 @@ html
   head
     title Argur
     = csrf_meta_tags
-
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' 
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = favicon_link_tag asset_path('Argur.png'), rel: 'icon', type: 'image/png'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'datja-turbolinks-track': 'reload'
     link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
 
   body.container
