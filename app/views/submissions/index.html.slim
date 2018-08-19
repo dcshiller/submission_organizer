@@ -8,9 +8,10 @@
     div= will_paginate(@presenter.index_table.query, inner_window: 2, previous_label: nil, next_label: nil)
 
 - elsif @presenter.user.articles.exists?
-  p.mb-20x Looks like you don't have any submissions yet.
-  .row.center
-    = link_to 'Add a submission', new_submission_path, class: 'button is-primary'
+  .column.space-between
+    p.mb-20x Looks like you don't have any submissions yet.
+    .row.center
+      = link_to 'Add a submission', new_submission_path, class: 'button is-primary'
 - else
   .column.space-between
     p.mb-20x Looks like you don't have any articles yet.

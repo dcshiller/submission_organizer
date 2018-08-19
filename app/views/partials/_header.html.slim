@@ -4,13 +4,15 @@ nav.level.is-mobile
     i.material-icons menu
     br.mb-10x
     .row.baseline
-      = link_to edit_user_path(current_user), class: 'is-4' do
-        i.material-icons settings
+      - if current_user
+        = link_to edit_user_path(current_user), class: 'is-4' do
+          i.material-icons settings
       = link_to about_path, class: 'is-4' do
         i.material-icons help
       h1.title.is-4
         p.level-item= link_to root_path do
           i.material-icons home
-      = link_to sessions_path, method: 'DESTROY', class: 'is-4' do
-        i.material-icons exit_to_app
+      - if current_user
+        = link_to logout_path, class: 'is-4' do
+          i.material-icons exit_to_app
   .level-item.column.is-one-third.has-text-centered

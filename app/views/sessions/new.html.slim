@@ -9,6 +9,10 @@ p#alert
     = f.button :submit, 'Log In', class: 'is-primary'
 br
 em.t-center
-  | Need an account? Create one
-  =< link_to 'here', new_user_path, class: 'underlined'
+  | Need an account?
+  =< link_to 'Create one', new_user_path, class: 'underlined'
+  | .
+em.t-center
+  | Forgot your password?
+  =< link_to 'Reset it', forgot_path, class: 'underlined'
   | .

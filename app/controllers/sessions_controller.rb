@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-		handle_logout
+    handle_logout
   end
 
   private
@@ -28,17 +28,17 @@ class SessionsController < ApplicationController
     login_as user
     redirect_to root_path
   end
-	
-	def handle_logout
-    logout_user
-		redirect_to new_session_path
-	end
 
-	def flash_failed_password_alert
-		flash['alert'] = 'Invalid user name or password'
-	end
-					
-	def user
+  def handle_logout
+    logout_user
+    redirect_to new_session_path
+  end
+
+  def flash_failed_password_alert
+    flash['alert'] = 'Invalid user name or password'
+  end
+
+  def user
     @user ||= (
                 User.where('email ILIKE ?', params[:user]&.dig(:email)).first ||
                 User.new

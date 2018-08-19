@@ -16,4 +16,4 @@
 - else
   .row.center: em No submissions yet
   br
-  .row.center= link_to 'create one', new_submission_path(submission: { article_id: @presenter.article }), class: 'button is-primary'
+  .row.center= link_to 'Create Submission', new_submission_path(submission: { article_id: @presenter.article }), class: 'button is-primary'

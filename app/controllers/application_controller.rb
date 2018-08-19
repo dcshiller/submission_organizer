@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
 
-	def logout_user
-		session[:user_id] = nil
-	end
+  def logout_user
+    reset_session
+  end
 
   def login_required
     redirect_to new_session_path unless current_user

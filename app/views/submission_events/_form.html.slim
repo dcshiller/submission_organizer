@@ -1,9 +1,11 @@
 = simple_form_for @presenter.submission_event do |f|
   = f.error_notification
-  = @presenter.submission_article&.title
   = f.association :submission
   = f.input :event_type
-  = f.input :date
+  br
+  .row
+    = f.input :date
 
   br
-  = f.button :submit
+  .row.space-around
+    = f.button :submit, class: 'button is-primary'

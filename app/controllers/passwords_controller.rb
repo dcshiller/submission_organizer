@@ -3,7 +3,7 @@ class PasswordsController < ApplicationController
 
   def reset
     user = User.find_by_email(params[:email])
-    user.set_reset_token
+    user.set_reset_token!
     UserMailer.with(user: user).reset_password.deliver_now
   end
 

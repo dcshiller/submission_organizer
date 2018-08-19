@@ -10,15 +10,17 @@
     div= will_paginate(@presenter.submission_events, inner_window: 2, previous_label: nil, next_label: nil)
 
 - elsif @presenter.user.submissions.exists?
-  p.mb-20x Looks like you don't have any events yet.
-  .row.center
-    = link_to 'Add an event', new_submission_event_path, class: 'button is-primary'
+  .column.space-between
+    p.mb-20x Looks like you don't have any events yet.
+    .row.center
+      = link_to 'Create Event', new_submission_event_path, class: 'button is-primary'
 - elsif @presenter.user.articles.exists?
-  p.mb-20x Looks like you don't have any submissions yet.
-  .row.center
-    = link_to 'Add a submission', new_submission_path, class: 'button is-primary'
+  .column.space-between
+    p.mb-20x Looks like you don't have any submissions yet.
+    .row.center
+      = link_to 'Create Submission', new_submission_path, class: 'button is-primary'
 - else
   .column.space-between
     p.mb-20x Looks like you don't have any articles yet.
     .row.center
-      = link_to 'Add an article', new_article_path, class: 'button is-primary'
+      = link_to 'Create Article', new_article_path, class: 'button is-primary'
