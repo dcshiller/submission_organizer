@@ -7,13 +7,17 @@ class PasswordsController < ApplicationController
     UserMailer.with(user: user).reset_password.deliver_now
   end
 
-  def edit
-    session[:user_id] = User.find_by_reset_token(params[:reset_token])
+  def new
+    return redirect_to forgot_path if params[:reset_token].blank?
+    @user = User.find_by_reset_token(params[:reset_token])
+    return redirect_to forgot_path unless @user
+    session[:user_id] = @user.id
   end
 
-  def update
-    return if current_user.reset_token.empty
+  def create
+    return redirect_to forgot_path if current_user.reset_token.blank?
     current_user.update(user_params.merge({ reset_token: nil }))
+    redirect_to root_path
   end
 
   private
