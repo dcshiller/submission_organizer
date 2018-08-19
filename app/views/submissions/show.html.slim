@@ -13,8 +13,9 @@
   .container.table_container= @presenter.show_table.draw_table
   .mb-10x
 - else
-  .row.center: em No events yet
-  br
-  .row.center= link_to 'create one', new_submission_event_path(submission_event: { submission_id: @presenter.submission }), class: 'button is-primary'
+  .column.space-between
+    .row.center: em No events yet
+    br
+    .row.center= link_to 'create one', new_submission_event_path(submission_event: { submission_id: @presenter.submission }), class: 'button is-primary'
 //p= link_to 'new event', new_submission_event_path(submission: @presenter.submission.id)
 

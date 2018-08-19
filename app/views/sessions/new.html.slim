@@ -7,7 +7,8 @@ p#alert
   = f.input :password, wrapper_html: { class: 'column' }
   .row.space-around
     = f.button :submit, 'Log In', class: 'is-primary'
-em
+br
+em.t-center
   | Need an account? Create one
-  =< link_to 'here', new_user_path
+  =< link_to 'here', new_user_path, class: 'underlined'
   | .

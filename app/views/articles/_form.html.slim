@@ -1,6 +1,7 @@
 = simple_form_for @presenter.article do |f|
-  = f.error_notification
-  = f.input :title
-  br
-  .row.center
-    = f.button :submit, class: 'is-primary'
+  .column.space-between
+    = f.error_notification
+    = f.input :title
+    br
+    .row.center
+      = f.button :submit, class: 'is-primary'

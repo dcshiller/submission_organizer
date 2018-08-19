@@ -1,4 +1,4 @@
-- content_for :max_width, '100vw'
+/- content_for :max_width, '100vw'
 
 .tile.is-ancestor.dashboard_tile_row
   .tile.is-parent data-url=articles_path data-click-type='click'
@@ -21,9 +21,10 @@
   .tile.is-parent data-url=submissions_path data-click-type='click'
     .tile.is-child.box.notification.is-danger
       .title.is-5.mb-10x.t-center Submissions
-      .column.link_list
-        - @presenter.submissions.each do |submission|
-          .row= link_to submission.article, submission
+      - if @presenter.submissions.any?
+        .column.link_list
+          - @presenter.submissions.each do |submission|
+            .row= link_to submission.article, submission
   .tile.is-parent data-url=submission_events_path data-click-type='click'
     .tile.is-child.box.notification.is-warning
       .title.is-5.mb-10x.t-center Events

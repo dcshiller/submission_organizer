@@ -12,6 +12,7 @@
   .row.center
     = link_to 'Add a submission', new_submission_path, class: 'button is-primary'
 - else
-  p.mb-20x Looks like you don't have any articles yet.
-  .row.center
-    = link_to 'Add an article', new_article_path, class: 'button is-primary'
+  .column.space-between
+    p.mb-20x Looks like you don't have any articles yet.
+    .row.center
+      = link_to 'Add an article', new_article_path, class: 'button is-primary'

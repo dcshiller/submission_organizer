@@ -7,6 +7,29 @@ html, body
   height: 100%
   background: #e5edfb
 
+.swivel_warning
+  display: none
+
+@media screen and (max-width: 80em) and (orientation: portrait)
+  .swivel_warning
+    display: flex
+    flex-direction: column
+    jusftify-content: space-around
+    background: rgba(0,0,0,.9) 
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 9999
+    i
+      font-size: 200
+      color: white
+      margin: auto
+      text-align: center
+      display: block
+
+
 // .notification a:hover, a:hover
 //   border-bottom: 1px solid lime
 //   text-decoration: none
@@ -60,6 +83,9 @@ a:hover .title
 
 .baseline
   align-items: baseline
+
+.underlined
+  text-decoration: underline
 
 .level.is-mobile p.level-item
   margin-right: 0

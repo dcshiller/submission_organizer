@@ -3,13 +3,16 @@
 = render 'partials/title', title: 'Sign Up'
 
 = simple_form_for @presenter.user, method: 'POST', url: users_path do |f|
-  = f.input :name, wrapper_html: { class: 'column' }
-  = f.input :email, wrapper_html: { class: 'column' }
-  = f.input :password, wrapper_html: { class: 'column' }
-  = f.input :password, label: 'Re-enter Password', wrapper_html: { class: 'column' }
+  .row
+    = f.input :name, wrapper_html: { class: 'column' }
+    = f.input :email, wrapper_html: { class: 'column' }
+  .row
+    = f.input :password, wrapper_html: { class: 'column' }
+    = f.input :password, label: 'Re-enter Password', wrapper_html: { class: 'column' }
   .row.space-around
     = f.button :submit, 'Sign Up', class: 'is-primary', wrapper_html: { class: 'column' }
-em
+br
+em.t-center
   | Have an account? Log in
-  =< link_to 'here', new_session_path
+  =< link_to 'here', new_session_path, class: 'underlined'
   | .
