@@ -1,10 +1,13 @@
 = render "partials/title", title: "New Password"
 
-.column.middle
-  p.paragraph Enter a new password.
-    = simple_form_for @presenter.user, method: 'POST', url: users_path do |f|
-      .column
-        = f.input :password, wrapper_html: { class: 'column' }
-        = f.input :password, label: 'Re-enter Password', wrapper_html: { class: 'column' }
-      .row.space-around
-        = f.button :submit, 'Update Password', class: 'is-primary', wrapper_html: { class: 'column' }
+p.t-center Enter a new password.
+= simple_form_for @presenter.user, method: 'POST', url: passwords_path do |f|
+  .row
+    .column
+      = f.input :password, wrapper_html: { class: 'column' }
+      br
+      br
+      = f.input :password, label: "Re-enter password", wrapper_html: { class: 'column' }
+  br
+  .row.space-around
+    = f.button :submit, 'Update Password', class: 'is-primary', wrapper_html: { class: 'column' }

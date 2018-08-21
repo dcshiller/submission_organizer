@@ -9,10 +9,13 @@ nav.level.is-mobile
           i.material-icons settings
       = link_to about_path, class: 'is-4' do
         i.material-icons help
-      h1.title.is-4
-        p.level-item= link_to root_path do
-          i.material-icons home
+      - if !current_user
+        = link_to new_session_path, class: 'is-4' do
+          i.material-icons vpn_key
       - if current_user
+        h1.title.is-4
+          p.level-item= link_to root_path do
+            i.material-icons home
         = link_to logout_path, class: 'is-4' do
           i.material-icons exit_to_app
   .level-item.column.is-one-third.has-text-centered

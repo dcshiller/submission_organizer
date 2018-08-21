@@ -9,9 +9,9 @@ class PasswordsController < ApplicationController
 
   def new
     return redirect_to forgot_path if params[:reset_token].blank?
-    @user = User.find_by_reset_token(params[:reset_token])
-    return redirect_to forgot_path unless @user
-    session[:user_id] = @user.id
+    @presenter = PasswordsPresenter.new(params)
+    return redirect_to forgot_path unless @presenter.user
+    session[:user_id] = @presenter.user.id
   end
 
   def create
