@@ -1,15 +1,21 @@
 = render "partials/title", title: "About"
-.paragraph
-  | Argur is a website for managing paper submissions to academic journals.
-.paragraph
-  | It is designed to make it easier to track:
-  ul.square
-    li where papers have been submitted
-    li how long a paper has been under review
-    li how many papers the user has submitted to a given journal
-    li how long has it been since the user has submitted to a journal
 
 .paragraph
-  | Argur is named after Arguriologus, the 
+  | Argur is a website designed for managing information about article submissions to academic journals.
+.paragraph
+  | It is intended to make it easier for authors to track:
+  ul.square
+    li where they have submitted articles
+    li how long articles have been under review
+    li how many articles the author has submitted to journals over the years
+    li how long has it been since the author  has submitted to a journal
+.paragraph
+  | The data sorted on Argur is organized around individual articles. To get started, a user creates a record for an individual article. Each article can in turn have many records recording the submissions of that article to different journals. Each such submission is assigned further records representing events in the submission process: the initial submission, submission of revisions, and decisions.
+
+.paragraph
+  | Documents that are relevant to individual submission events can be uploaded to those events' pages. These can include anything the user likes, including decision letters, reviewer comments, drafts, etc.
+
+.paragraph
+  | Argur is named after Arguriologus, the
   = link_to "Greek god of double-entry accounting", "https://www.mcsweeneys.net/articles/official-statement-from-arguriologus-greek-god-of-double-entry-accounting", target: "_blank", class: "underlined"
   | .
