@@ -1,21 +1,38 @@
-nav.level.is-mobile
-  .level-item.column.is-one-third.has-text-centered
-  .level-item.column.is-one-third.has-text-centered#menu_bar
-    i.material-icons menu
-    br.mb-10x
-    .row.baseline
-      - if current_user
-        = link_to edit_user_path(current_user), class: 'is-4' do
-          i.material-icons settings
-      = link_to about_path, class: 'is-4' do
-        i.material-icons help
-      - if !current_user
-        = link_to new_session_path, class: 'is-4' do
+nav#menu_bar.is-mobile
+  ul#link_list
+    - if !current_user
+      li.row
+        = link_to new_session_path do
           i.material-icons vpn_key
-      - if current_user
-        h1.title.is-4
-          p.level-item= link_to root_path do
-            i.material-icons home
-        = link_to logout_path, class: 'is-4' do
+          | Login
+    - if current_user
+      li.row
+        = link_to logout_path do
           i.material-icons exit_to_app
-  .level-item.column.is-one-third.has-text-centered
+          | Logout
+      li.row
+        = link_to edit_user_path(current_user) do
+          i.material-icons settings
+          | Settings
+    li.row
+      = link_to about_path do
+        i.material-icons help
+        | Help
+    .hr
+    - if current_user
+      li.row
+        = link_to journals_path do
+          i.material-icons chrome_reader_mode
+          | Journals
+      li.row
+        = link_to articles_path do
+          i.material-icons description
+          | Articles
+      li.row
+        = link_to submissions_path do
+          i.material-icons send
+          | Submissions
+      li.row
+        = link_to submission_events_path do
+          i.material-icons assignment_late
+          | Events

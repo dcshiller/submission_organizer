@@ -67,10 +67,14 @@ a:hover .title
   margin-bottom: 10px
 
 #content_container
-  min-height: 80%
+  min-height: 100%
+  display: flex
+  flex-direction: column
+  position: absolute
+  left: 200px
+  width: calc(100% - 200px)
   &> .row > .box
     max-width: 800px
-    max-height: 80%
 
 .clickable, [data-url], [data-url] *, button, .button
   cursor: pointer

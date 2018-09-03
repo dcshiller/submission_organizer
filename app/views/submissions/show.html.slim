@@ -1,5 +1,3 @@
-- content_for :back_link_path, submissions_path
-
 = render 'partials/title', title: 'Submission'
 .corner_button
   = link_to submission_path(@presenter.submission), method: 'DELETE', data: { confirm: 'Are you sure?' } do
