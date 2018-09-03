@@ -1,6 +1,6 @@
 = simple_form_for(@presenter.submission) do |f|
   = f.error_notification
-  = f.association :article
+  = f.association :article, collection: @presenter.user.articles
   = f.association :journal
   .row.center
     = f.button :submit, class: 'button is-primary'

@@ -1,6 +1,6 @@
 = simple_form_for @presenter.submission_event do |f|
   = f.error_notification
-  = f.association :submission
+  = f.association :submission, collection: @presenter.user.submissions
   = f.input :event_type
   br
   .row
