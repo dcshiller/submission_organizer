@@ -9,7 +9,8 @@ class SubmissionPresenter < ApplicationPresenter
 
   def submissions
     user.submissions.
-         joins(:journal, :latest_submission_events_by_submission).
+         joins(:journal).
+         left_outer_joins(:latest_submission_events_by_submission).
          order(params[:order] || 'latest_submission_events_by_submissions.latest_date DESC').
          paginate(per_page: 10, page: params[:page])
   end

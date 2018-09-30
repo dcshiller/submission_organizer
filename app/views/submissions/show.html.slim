@@ -1,13 +1,11 @@
-- content_for :back_link_path, submissions_path
-
 = render 'partials/title', title: 'Submission'
 .corner_button
   = link_to submission_path(@presenter.submission), method: 'DELETE', data: { confirm: 'Are you sure?' } do
     i.material-icons delete
 
 .edit_form_list
-  = line_form_association_for(@presenter.submission, 'article')
-  .mb-20x= line_form_association_for(@presenter.submission, 'journal')
+  = line_form_association_for(@presenter.submission, 'article', @presenter.user.articles)
+  .mb-20x= line_form_association_for(@presenter.submission, 'journal', Journal.all)
 
 - if @presenter.submission.events.exists?
   .container.table_container= @presenter.show_table.draw_table

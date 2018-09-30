@@ -11,6 +11,3 @@ html
     - unless content_for :no_header
       = render 'partials/header'
     #content_container.container.column.middle
-      .row.center
-        div style="max-width: #{content_for :max_width}"
-          = yield
