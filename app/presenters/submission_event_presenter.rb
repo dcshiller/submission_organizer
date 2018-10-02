@@ -13,8 +13,8 @@ class SubmissionEventPresenter < ApplicationPresenter
 
   def submission_events
     user.events.joins(:journal).
-         order(params[:order] || 'submission_events.date DESC').
-         paginate(per_page: 10, page: params[:page])
+      order(params[:order] || 'submission_events.date DESC').
+      paginate(per_page: 10, page: params[:page])
   end
 
   def index_row_form
@@ -26,8 +26,8 @@ class SubmissionEventPresenter < ApplicationPresenter
           prop: :article,
           collection: user.articles,
           placeholder: 'Article',
-				  width: '150%'
-				},
+          width: '150%'
+        },
         {
           type: :input,
           prop: :journal,
@@ -37,11 +37,13 @@ class SubmissionEventPresenter < ApplicationPresenter
         },
         {
           type: :input,
+          collection: SubmissionEvent::EVENT_TYPES,
           prop: :event_type,
           width: '100px'
         },
         {
           type: :input,
+          collection: SubmissionEvent::EVENT_SUBTYPES,
           prop: :event_subtype,
           width: '100px'
         },

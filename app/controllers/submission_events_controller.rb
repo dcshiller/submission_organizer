@@ -20,9 +20,9 @@ class SubmissionEventsController < ApplicationController
 
   def update
     authorize submission_event
-    if submission_event_params_are_valid? 
+    if submission_event_params_are_valid?
       submission_event.update(submission_event_params)
-      redirect_to submission_events_path
+      redirect_to submission_event_path(submission_event)
     else new
     end
   end

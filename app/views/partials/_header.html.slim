@@ -14,11 +14,11 @@ nav#menu_bar.is-mobile
         = link_to edit_user_path(current_user) do
           i.material-icons settings
           | Settings
+      .hr
     li.row
       = link_to about_path do
         i.material-icons help
         | Help
-    .hr
     - if current_user
       li.row
         = link_to journals_path do
