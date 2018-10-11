@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root to: 'users#show'
 
-  resources :documents, only: [:create, :show, :destroy]
+  resources :documents, only: [:create, :show, :destroy, :update]
   resources :sessions, only: [:new, :index, :create,]
   get :about, controller: :pages, action: :about
   get :logout, controller: :sessions, action: :destroy

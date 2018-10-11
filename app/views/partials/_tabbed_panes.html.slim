@@ -1,10 +1,10 @@
 .tabbed_panes
-  - selected_pane = panes.shift
+  - selected_pane = selected || panes.keys.first
   .tabs
-    .tab.selected data-toggles="#{selected_pane[0]}_pane" = selected_pane[0]
-    - panes.keys.each do |tab|
-      .tab data-toggles="#{tab}_pane" = tab
-  .selected.pane id="#{selected_pane[0]}_pane" = selected_pane[1]
+    - panes.keys.each do |name|
+      .tab data-toggles="#{name}_pane" class=("selected" if selected_pane == name)
+        = name
   - panes.each do |name, pane|
-    .pane id="#{name}_pane"= pane
+    .pane id="#{name}_pane" class=("selected" if selected_pane == name)
+      = pane
 

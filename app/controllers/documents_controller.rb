@@ -1,8 +1,19 @@
 class DocumentsController < ApplicationController
+  attr_reader :doc
+
+  def destroy
+    @doc = Document.find(params[:id])
+    authorize doc
+    doc.destroy
+    flash[:doc] = true
+    redirect_to doc.documentable
+  end
+
   def create
     @doc = Document.new(document_params)
-    @doc.file = params[:document][:file]
-    @doc.save
+    doc.file = params[:document][:file]
+    doc.save
+    flash[:doc] = true
     redirect_to @doc.documentable
   end
 
@@ -18,13 +29,13 @@ class DocumentsController < ApplicationController
              )
   end
 
-  def destroy
+  def update
+    doc = Document.find(params[:id])
     authorize doc
-    @doc = Document.find(params[:id])
-    @doc.destroy
-    redirect_to @doc.documentable
+    doc.update(document_params)
+    flash[:doc] = true
+    redirect_to doc.documentable
   end
-
   private
 
   def document_params
