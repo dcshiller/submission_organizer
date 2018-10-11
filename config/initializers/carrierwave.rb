@@ -12,12 +12,12 @@ if Rails.env.development? || Rails.env.test?
       "#{Rails.root}/public/uploads"
     end
   end
-elsif Rails.env.test?
-  CarrierWave.configure do |config|
-    config.storage = :file
-    config.enable_processing = false
-    config.root = "#{Rails.root}/tmp"
-  end
+#elsif Rails.env.test?
+  #CarrierWave.configure do |config|
+    #config.storage = :file
+    #config.enable_processing = false
+    #config.root = "#{Rails.root}/tmp"
+  #end
 else
   CarrierWave.configure do |config|
     # For testing, upload files to local `tmp` folder.

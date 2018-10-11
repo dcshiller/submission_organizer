@@ -9,11 +9,13 @@ class DocumentsController < ApplicationController
   def show
     doc = Document.find(params[:id])
     authorize doc
-    send_file(doc.file.path,
+    send_data(doc.file.read,
               filename: doc.name,
               type: doc.file.content_type,
               disposition: 'attachment',
-              url_based_filename: true)
+              stream: true,
+              buffer_size: '4096',
+             )
   end
 
   def destroy
