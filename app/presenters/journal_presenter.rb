@@ -8,12 +8,22 @@ class JournalPresenter < ApplicationPresenter
   end
 
   def journals
-    ar = Journal.select("*, latest_journal_events_by_users.latest_date").
-                 joins("FULL OUTER JOIN latest_journal_events_by_users ON journals.id = latest_journal_events_by_users.journal_id").
-                 where("title ILIKE ?", "%#{params[:query]}%").
-                 order("CASE WHEN latest_journal_events_by_users.user_id = #{user.id} THEN 0 ELSE 1 END").
-                 order((params[:order] || 'journals.title') + " NULLS LAST", 'latest_journal_events_by_users.latest_date DESC NULLS LAST')
-    Journal.from(ar, :journals).paginate(page: params[:page], per_page: 10, total_entries: ar.count('DISTINCT journals.id'))
+    ar = <<~SQL
+            (
+              SELECT *
+              FROM journals
+                FULL OUTER JOIN (
+                SELECT *
+                FROM latest_journal_events_by_users
+                WHERE latest_journal_events_by_users.user_id = #{user.id}
+              ) AS latest_journal_events_for_user_#{user.id}
+              ON journals.id = latest_journal_events_for_user_#{user.id}.journal_id
+              WHERE title ILIKE '%#{params[:query]}%'
+              ORDER BY #{params[:order] ? params[:order] + " NULLS LAST" : "journals.title ASC"}
+            ) AS journals
+
+    SQL
+    Journal.from(ar, :journals).paginate(page: params[:page], per_page: 10, total_entries: Journal.count)
   end
 
   def submissions
@@ -48,7 +58,7 @@ class JournalPresenter < ApplicationPresenter
         },
         {
           name: 'Latest',
-          value_accessor: ['latest_journal_events_by_user', 'latest_date'],
+          value_accessor: ["latest_journal_events_for_user_#{user.id}", 'latest_date'],
           width: '120px'
         }
       ]

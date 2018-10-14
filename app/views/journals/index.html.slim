@@ -12,19 +12,3 @@
   = @presenter.index_table.draw_table
   div= will_paginate(@presenter.index_table.query, inner_window: 2, previous_label: nil, next_label: nil)
 
-  / table.table
-  /   thead
-  /     th width='80%'= @presenter.title_order_link
-  /     th width='20%'= @presenter.activity_order_link
-  /   tbody.scrollbox
-  /     tr.form_row data-address=id
-  /       td.hidden
-  /         = simple_form_for @presenter.journal, html: { data: { form_id: id } } do |f|
-  /           = f.input :title, label: false, placeholder: 'New Journal'
-  /       td.hidden.barred_out
-  /     - @presenter.journals.each do |j|
-  /       tr data-url=journal_path(j) data-search=j.title
-  /         td width='80%'= j
-  /         td width='20%'= j.last_activity.for_user(current_user).first&.date || '-'
-
-  div= will_paginate(@presenter.journals, inner_window: 2, previous_label: nil, next_label: nil)

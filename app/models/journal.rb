@@ -20,9 +20,22 @@ class Journal < ApplicationRecord
   end
   has_one :latest_journal_events_by_user
 
-  scope :alphabetical, -> { order(title: :asc) } 
- 
+  scope :alphabetical, -> { order(title: :asc) }
+
   def to_s
     title
+  end
+
+  def latest_journal_events_for_user(user_id)
+    LatestJournalEventsByUser.where(user_id: user_id, journal_id: id).order("latest_date DESC").first
+  end
+
+  def method_missing(method_name, *args, &block)
+  user_id = method_name.to_s.match(/latest_journal_events_for_user_(\d*)/)[1]
+  if user_id
+    latest_journal_events_for_user(user_id)
+  else
+    super
+  end
   end
 end
